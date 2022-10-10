@@ -78,7 +78,7 @@ def _operation2sympy(arg, varMap=None, substituteFloats=True):
     if isinstance(arg, latexexpr.Expression):
         return _operation2sympy(arg.operation, varMap, sf)
     if not isinstance(arg, latexexpr.Operation):
-        raise TypeError("TODO " + str(type(arg)) + str(arg))
+        raise TypeError(f"TODO {str(type(arg))}{str(arg)}")
     t = arg.type
     if t in latexexpr._supportedOperationsN:
         if t == latexexpr._ADD:
@@ -94,7 +94,7 @@ def _operation2sympy(arg, varMap=None, substituteFloats=True):
         if t == latexexpr._SUB:
             sympyOp, args = sympy.Add, (_o2s(
                 a[0], varMap, sf), sympy.Mul(-1, _o2s(a[1], varMap, sf)))
-        elif t == latexexpr._DIV or t == latexexpr._DIV2:
+        elif t in [latexexpr._DIV, latexexpr._DIV2]:
             sympyOp, args = sympy.Mul, (_o2s(
                 a[0], varMap, sf), sympy.power.Pow(_o2s(a[1], varMap, sf), -1))
         elif t == latexexpr._POW:
@@ -172,11 +172,6 @@ def _sympy2operation(sympyExpr, varMap):
                 return -args[1]
             if isinstance(args[1], latexexpr.Variable) and args[1].name == '-1':
                 return -args[0]
-        elif len(args) == 2 and isinstance(args[1], latexexpr.Operation) and args[1].type == latexexpr._DIV:
-            if args[1].args[0].value == 1.:
-                return args[0] / args[1].args[1]
-            if all(a.type == latexexpr._LN for a in (args[0], args[1].args[0])):
-                return latexexpr._LOG(args[0], args[0].args[1])
         for i, a in enumerate(args):
             t = a.type if isinstance(a, latexexpr.Operation) else a.operation.type if isinstance(
                 a, latexexpr.Expression) else None
@@ -273,8 +268,7 @@ def simplify(arg, substituteFloats=False, **kw):
         s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
         s = sympy.simplify(s, **kw)
         return _sympy2operation(s, lVars)
-    raise TypeError("Unsupported type (%s) for simplify" %
-                    (arg.__class__.__name__))
+    raise TypeError(f"Unsupported type ({arg.__class__.__name__}) for simplify")
 
 
 latexexpr.Expression.simplify = lambda self, substituteFloats=False, **kw: _setOperation(
@@ -316,8 +310,7 @@ def expand(arg, substituteFloats=False, **kw):
         s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
         s = sympy.expand(s, **kw)
         return _sympy2operation(s, lVars)
-    raise TypeError("Unsupported type (%s) for expand" %
-                    (arg.__class__.__name__))
+    raise TypeError(f"Unsupported type ({arg.__class__.__name__}) for expand")
 
 
 latexexpr.Expression.expand = lambda self, substituteFloats=False, **kw: _setOperation(
@@ -358,8 +351,7 @@ def factor(arg, substituteFloats=False, **kw):
         s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
         s = sympy.factor(s, **kw)
         return _sympy2operation(s, lVars)
-    raise TypeError("Unsupported type (%s) for factor" %
-                    (arg.__class__.__name__))
+    raise TypeError(f"Unsupported type ({arg.__class__.__name__}) for factor")
 
 
 latexexpr.Expression.factor = lambda self, substituteFloats=False, **kw: _setOperation(
@@ -402,8 +394,7 @@ def collect(arg, syms, substituteFloats=False, **kw):
             sympy.Symbol(s.name) for s in syms]
         s = sympy.collect(s, syms, **kw)
         return _sympy2operation(s, lVars)
-    raise TypeError("Unsupported type (%s) for collect" %
-                    (arg.__class__.__name__))
+    raise TypeError(f"Unsupported type ({arg.__class__.__name__}) for collect")
 
 
 latexexpr.Expression.collect = lambda self, syms, substituteFloats=False, **kw: _setOperation(
@@ -447,8 +438,7 @@ def cancel(arg, substituteFloats=False, **kw):
         s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
         s = sympy.cancel(s, **kw)
         return _sympy2operation(s, lVars)
-    raise TypeError("Unsupported type (%s) for cancel" %
-                    (arg.__class__.__name__))
+    raise TypeError(f"Unsupported type ({arg.__class__.__name__}) for cancel")
 
 
 latexexpr.Expression.cancel = lambda self, substituteFloats=False, **kw: _setOperation(
@@ -484,8 +474,7 @@ def apart(arg, substituteFloats=False, **kw):
         s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
         s = sympy.apart(s, **kw)
         return _sympy2operation(s, lVars)
-    raise TypeError("Unsupported type (%s) for apart" %
-                    (arg.__class__.__name__))
+    raise TypeError(f"Unsupported type ({arg.__class__.__name__}) for apart")
 
 
 latexexpr.Expression.apart = lambda self, substituteFloats=False, **kw: _setOperation(

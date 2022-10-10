@@ -10,7 +10,7 @@ v3 = latexexpr.Variable('v3',1.23)
 v4 = latexexpr.Variable('v4',4.56)
 
 def printExpr(e1,e2=''):
-	print('$$' + str(e1) + r'\ \ \ \ \ \ \ \ \ ' + str(e2) + '$$\n')
+	print(f'$${str(e1)}' + r'\ \ \ \ \ \ \ \ \ ' + str(e2) + '$$\n')
 
 # simplify
 print('\n\nsimplify')

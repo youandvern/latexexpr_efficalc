@@ -212,13 +212,11 @@ class Variable(object):
         """
         if self.isSymbolic():
             return self.strSymbolic()
-        f = format if format else self.format
+        f = format or self.format
         e = exponent if exponent != 0 else self.exponent
         result = self.value
         if e == 0:
-            if result < 0.:
-                return r'\left( %s \right)' % f % result
-            return '%s' % f % result
+            return r'\left( %s \right)' % f % result if result < 0. else f'{f}' % result
         val = self.value*math.pow(10, -e)
         if self.value < 0.:
             return r'\left( %s %s \right)' % (f % val, '\cdot 10^{%d}' % e)
@@ -293,8 +291,8 @@ class Variable(object):
                 F
         """
         if self.isSymbolic():
-            return '%s' % (self.name)
-        return '%s = %s' % (self.name, self.strResultWithUnit())
+            return f'{self.name}'
+        return f'{self.name} = {self.strResultWithUnit()}'
 
     def toLaTeXVariable(self, name, what='float', command='def'):
         r"""Returns latex expression converting receiver to LaTeX variable using \def, \newcommand, or \renewcommand LaTeX command
@@ -317,10 +315,20 @@ class Variable(object):
         """
         what = what.lower()
         whats = ('float', 'str', 'valunit', 'all', 'subst')
-        if not what in whats:
-            raise LaTeXExpressionError('%s not in %s' % (what, whats))
-        val = self.value if what == 'float' else self.strResult() if what == 'str' else self.strResultWithUnit(
-        ) if what == 'valunit' else str(self) if what == 'all' or what == 'subst' else None
+        if what not in whats:
+            raise LaTeXExpressionError(f'{what} not in {whats}')
+        val = (
+            self.value
+            if what == 'float'
+            else self.strResult()
+            if what == 'str'
+            else self.strResultWithUnit()
+            if what == 'valunit'
+            else str(self)
+            if what in ['all', 'subst']
+            else None
+        )
+
         return toLaTeXVariable(name, val, command)
 
     def toLaTeXVariableFloat(self, name, command='def'):
@@ -452,9 +460,11 @@ class Operation(object):
     exponent = 0  # see :py:attr:`Variable.exponent`
 
     def __init__(self, type, *args):
-        if not type in _supportedOperations:
-            raise LaTeXExpressionError('operation %s not in supported operations %s' % (
-                type, str(_supportedOperations)))
+        if type not in _supportedOperations:
+            raise LaTeXExpressionError(
+                f'operation {type} not in supported operations {str(_supportedOperations)}'
+            )
+
         self.type = type
         self.args = self.__checkArgs(args)
         self.format = '%g'
@@ -471,7 +481,9 @@ class Operation(object):
                 ret.append(Variable('%g' % a, a, format='%g'))
             else:
                 raise TypeError(
-                    "wrong argunemt type (%s) in Operation constructor" % a.__class__.__name__)
+                    f"wrong argunemt type ({a.__class__.__name__}) in Operation constructor"
+                )
+
         return ret
 
     def __str(self, what):
@@ -495,11 +507,11 @@ class Operation(object):
             v0 = getattr(a[0], what)()
             v1 = getattr(a[1], what)()
             if t == _SUB:
-                return r'%s - %s' % (v0, v1)
+                return f'{v0} - {v1}'
             if t == _DIV:
                 return r'\frac{ %s }{ %s }' % (v0, v1)
             if t == _DIV2:
-                return r'%s / %s' % (v0, v1)
+                return f'{v0} / {v1}'
             if t == _POW:
                 return r'{ %s }^{ %s }' % (v0, v1)
             if t == _ROOT:
@@ -520,7 +532,7 @@ class Operation(object):
             if t == _ABS:
                 return r'\left| %s \right|' % v
             if t == _SQR:
-                return r'%s^2' % v
+                return f'{v}^2'
             if t == _SQRT:
                 return r'\sqrt{ %s }' % v
             if t == _SIN:
@@ -552,8 +564,9 @@ class Operation(object):
             if _DEBUG:
                 print(t)
                 raise LaTeXExpressionError(t)
-        raise LaTeXExpressionError('operation %s not in supported operations %s' % (
-            self.type, str(_supportedOperations)))
+        raise LaTeXExpressionError(
+            f'operation {self.type} not in supported operations {str(_supportedOperations)}'
+        )
 
     def strSymbolic(self):
         r"""Returns string of symbolic representation of receiver
@@ -606,12 +619,10 @@ class Operation(object):
         if self.isSymbolic():
             return self.strSymbolic()
         r = float(self)
-        f = format if format else self.format
+        f = format or self.format
         e = exponent if exponent != 0 else self.exponent
         if e == 0:
-            if r < 0.:
-                return r'\left( %s \right)' % f % r
-            return '%s' % f % r
+            return r'\left( %s \right)' % f % r if r < 0. else f'{f}' % r
         val = r*math.pow(10, -e)
         if r < 0.:
             return r'\left( %s %s \right)' % (f % val, '\cdot 10^{%d}' % e)
@@ -707,8 +718,9 @@ class Operation(object):
             if _DEBUG:
                 print(t)
                 raise LaTeXExpressionError(t)
-        raise LaTeXExpressionError('operation %s not in supported operations %s' % (
-            self.type, str(_supportedOperations)))
+        raise LaTeXExpressionError(
+            f'operation {self.type} not in supported operations {str(_supportedOperations)}'
+        )
 
     def __float__(self):
         """Returns numeric result of the receiver
@@ -758,7 +770,7 @@ class Operation(object):
         """
         if self.isSymbolic():
             return self.strSymbolic()
-        return '%s = %s' % (self.strSymbolic(), self.strSubstituted())
+        return f'{self.strSymbolic()} = {self.strSubstituted()}'
 
     def toVariable(self, newName='', **kw):
         """Returns new Variable instance with attributes copied from receiver
@@ -1129,12 +1141,10 @@ class Expression(object):
         if self.isSymbolic():
             return self.operation.strSubstituted()
         r = float(self)
-        f = format if format else self.format
+        f = format or self.format
         e = exponent if exponent != 0 else self.exponent
         if e == 0:
-            if r < 0:
-                return r'\left(%s\right)' % f % r
-            return '%s' % f % r
+            return r'\left(%s\right)' % f % r if r < 0 else f'{f}' % r
         val = float(self)*math.pow(10, -e)
         if r < 0:
             return r'\left( %s %s \right)' % (f % val, '\cdot 10^{%d}' % e)
@@ -1229,8 +1239,8 @@ class Expression(object):
                 E_2 = \frac{ {a_{22}} + {F} }{ {F} } = \frac{ 3.45 + 5.87693 }{ { 434 \cdot 10^{-2} } } = 2.14906 \ \mathrm{mm}
         """
         if self.isSymbolic():
-            return '%s = %s' % (self.name, self.operation)
-        return '%s = %s = %s' % (self.name, self.operation, self.strResultWithUnit())
+            return f'{self.name} = {self.operation}'
+        return f'{self.name} = {self.operation} = {self.strResultWithUnit()}'
 
     def toLaTeXVariable(self, name, what='float', command='def'):
         r"""Returns latex expression converting receiver to LaTeX variable using \def, \newcommand, or \renewcommand LaTeX command
@@ -1260,8 +1270,8 @@ class Expression(object):
         """
         what = what.lower()
         whats = ('float', 'str', 'valunit', 'symb', 'subst', 'all')
-        if not what in whats:
-            raise LaTeXExpressionError('%s not in %s' % (what, whats))
+        if what not in whats:
+            raise LaTeXExpressionError(f'{what} not in {whats}')
         val = float(self) if what == 'float' else self.strResult() if what == 'str' else self.strResultWithUnit() if what == 'valunit' else self.strSymbolic(
         ) if what == 'symb' else self.strSubstituted() if what == 'subst' else str(self) if what == 'all' else None
         return toLaTeXVariable(name, val, command)
@@ -1386,7 +1396,7 @@ def toLaTeXVariable(name, what, command='def'):
     """
     if command == 'def':
         return r'\def\%s{%s}' % (name, what)
-    elif command == 'newcommand' or command == 'renewcommand':
+    elif command in ['newcommand', 'renewcommand']:
         return r'\%s{\%s}{%s}' % (command, name, what)
     else:
         raise LaTeXExpressionError(
@@ -1436,9 +1446,9 @@ if __name__ == "__main__":
     print(v8)
 
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    print(str(v3))
+    print(v3)
     v8 = Variable('F', None, 'kN')
-    print(str(v8))
+    print(v8)
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     print(v1.strSymbolic())
@@ -1488,7 +1498,7 @@ if __name__ == "__main__":
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
     o3 = (v1+v2)/v3
-    print(str(o3))
+    print(o3)
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
@@ -1548,7 +1558,7 @@ if __name__ == "__main__":
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
     e2 = Expression('E_2', (v1+v2)/v3, 'mm')
-    print(str(e2))
+    print(e2)
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
