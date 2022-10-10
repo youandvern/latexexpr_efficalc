@@ -94,6 +94,11 @@ _DEBUG = False
 
 class LaTeXExpressionError(Exception):
     '''Module exception class'''
+    def __init__(self, msg):
+        self.msg = msg
+
+    def __str__(self):
+        return repr(self.msg)
 
 
 # Auxiliary functions
@@ -149,27 +154,47 @@ class Variable(object):
     name = ''                   #: symbolic name
     unit = ''                   #: physical unit
     #: string to be formatted by the numeric value (with '%' operation)
-    format = '%g  '
+    format = '%.4g  '
     # : string to be formatted by physical unit string (with '%' operation)
     unitFormat = r'\mathrm{%s}'
     #: exponent for scientific representation. If 0, then no scientific representation is performed
     exponent = 0
 
-    def __init__(self, name, value=None, unit="", format='%g', unitFormat=r'\mathrm{%s}', exponent=0):
+    def __init__(self, name, value=None, unit="", format='%.4g', unitFormat=r'\mathrm{%s}', exponent=0):
         self.name = name
         self._value = None if value is None else float(value)
         self.unit = unit
         self.format = format
         self.unitFormat = unitFormat
         self.exponent = exponent
+        self.set_format()
 
     def _get_value(self):
         return self._value
 
     def _set_value(self, v):
-        self._value = None if v is None else float(v)
+        if v is None:
+            self._value = None
+        else:
+            try:
+                float(v)
+                self._value = float(v)
+            except ValueError:
+                self._value = str(v).strip()
+        # self._value = None if v is None else float(v)
     # : numeric value. If value==None, than the Variable is considered as symbolic
     value = property(_get_value, _set_value)
+
+    def set_format(self):
+        v = self._value
+        try:
+            float(v)
+            if v < 1000:
+                self.format = '%.4g'
+            else:
+                self.format = '%.0f'
+        except ValueError:
+            self.format = self.format
 
     def strSymbolic(self):
         """Returns string of symbolic representation of receiver (its name)
@@ -195,7 +220,7 @@ class Variable(object):
                 >>> print v1.strSubstituted()
                 3.45
         """
-        return self.strResult()
+        return self.strResultWithUnit()
 
     def strResult(self, format='', exponent=0):
         """Returns string of the result of the receiver (its formatted result)
@@ -215,10 +240,16 @@ class Variable(object):
         f = format if format else self.format
         e = exponent if exponent != 0 else self.exponent
         result = self.value
+        if type(result) is str:
+            return fr' {result}'
         if e == 0:
-            if result < 0.:
-                return r'\left( %s \right)' % f % result
-            return '%s' % f % result
+            if result < -1000:
+                return fr'\left( {result: .0f} \right)'
+            elif result < 0.:
+                return fr'\left( {result: .4g} \right)'
+            elif result < 1000:
+                return fr'{result: .4g}'
+            return fr'{result: .0f}'  # r'%s'%f%r
         val = self.value*math.pow(10, -e)
         if self.value < 0.:
             return r'\left( %s %s \right)' % (f % val, '\cdot 10^{%d}' % e)
@@ -361,7 +392,7 @@ class Variable(object):
 Variable.__add__ = _add
 Variable.__sub__ = _sub
 Variable.__mul__ = _mul
-Variable.__div__ = _div
+Variable.__truediv__ = _div
 Variable.__floordiv__ = _div2
 Variable.__pow__ = _pow
 Variable.__radd__ = _radd
@@ -448,30 +479,30 @@ class Operation(object):
     """
     type = None   #: arithmetic type of operation
     args = []     #: argument list subjected to the operation :py:attr:`Operation.type`
-    format = '%g'  # see :py:attr:`Variable.format`
+    format = '%.4g' # see :py:attr:`Variable.format`
     exponent = 0  # see :py:attr:`Variable.exponent`
 
     def __init__(self, type, *args):
         if not type in _supportedOperations:
-            raise LaTeXExpressionError('operation %s not in supported operations %s' % (
-                type, str(_supportedOperations)))
+            raise LaTeXExpressionError('operation %s not in supported operations %s'%(type,str(_supportedOperations)))
         self.type = type
         self.args = self.__checkArgs(args)
-        self.format = '%g'
+        self.format = '%.4g'
         self.exponent = 0
 
     def __checkArgs(self, args):
         ret = []
         for a in args:
-            if isinstance(a, (Variable, Expression, Operation)):
+            if isinstance(a, (Variable, Operation)):
                 ret.append(a)
+            elif isinstance(a, Expression):
+                ret.append(a.toVariable())
             elif isinstance(a, int):
                 ret.append(Variable('%d' % a, a, format='%d'))
             elif isinstance(a, float):
-                ret.append(Variable('%g' % a, a, format='%g'))
+                ret.append(Variable('%.4g' % a, a, format='%.4g'))
             else:
-                raise TypeError(
-                    "wrong argunemt type (%s) in Operation constructor" % a.__class__.__name__)
+                raise TypeError("wrong argument type (%s) in Operation constructor" % a.__class__.__name__)
         return ret
 
     def __str(self, what):
@@ -501,7 +532,7 @@ class Operation(object):
             if t == _DIV2:
                 return r'%s / %s' % (v0, v1)
             if t == _POW:
-                return r'{ %s }^{ %s }' % (v0, v1)
+                return r'{\left( %s \right)}^{ %s }'%(v0,v1)
             if t == _ROOT:
                 return r'\sqrt[ %s ]{ %s }' % (v0, v1)
             if t == _LOG:
@@ -524,17 +555,17 @@ class Operation(object):
             if t == _SQRT:
                 return r'\sqrt{ %s }' % v
             if t == _SIN:
-                return r'\sin{ %s }' % v
+                return r'\sin{\left( %s \right)}'%v
             if t == _COS:
-                return r'\cos{ %s }' % v
+                return r'\cos{\left( %s \right)}'%v
             if t == _TAN:
-                return r'\tan{ %s }' % v
+                return r'\tan{\left( %s \right)}'%v
             if t == _SINH:
-                return r'\sinh{ %s }' % v
+                return r'\sinh{\left( %s \right)}'%v
             if t == _COSH:
-                return r'\cosh{ %s }' % v
+                return r'\cosh{\left( %s \right)}'%v
             if t == _TANH:
-                return r'\tanh{ %s }' % v
+                return r'\tanh{\left( %s \right)}'%v
             if t == _EXP:
                 return r'\mathrm{e}^{ %s }' % v
             if t == _LN:
@@ -609,9 +640,13 @@ class Operation(object):
         f = format if format else self.format
         e = exponent if exponent != 0 else self.exponent
         if e == 0:
-            if r < 0.:
-                return r'\left( %s \right)' % f % r
-            return '%s' % f % r
+            if r < -1000:
+                return fr'\left( {r: .0f} \right)'
+            elif r < 0:
+                return  r'\left(%s\right)' % f % r
+            elif r < 1000:
+                return fr'{r: .4g}'
+            return fr'{r: .0f}'
         val = r*math.pow(10, -e)
         if r < 0.:
             return r'\left( %s %s \right)' % (f % val, '\cdot 10^{%d}' % e)
@@ -710,6 +745,10 @@ class Operation(object):
         raise LaTeXExpressionError('operation %s not in supported operations %s' % (
             self.type, str(_supportedOperations)))
 
+    def strResultWithUnit(self):
+        r"""Returns string of the result of the receiver (its formatted result) ending with its units"""
+        return self.strResult()
+
     def __float__(self):
         """Returns numeric result of the receiver
 
@@ -777,7 +816,7 @@ class Operation(object):
 Operation.__add__ = _add
 Operation.__sub__ = _sub
 Operation.__mul__ = _mul
-Operation.__div__ = _div
+Operation.__truediv__ = _div
 Operation.__floordiv__ = _div2
 Operation.__pow__ = _pow
 Operation.__radd__ = _radd
@@ -1057,11 +1096,11 @@ class Expression(object):
     name = ""                   #: symbolic name of the expression
     operation = None            #: underlying :class:`.Operation` instance
     unit = ""                   #: see :py:attr:`Variable.unit`
-    format = "%g"               #: see :py:attr:`Variable.format`
+    format = "%.4g"               #: see :py:attr:`Variable.format`
     unitFormat = r"\mathrm{%s}"  # : see :py:attr:`Variable.unitFormat`
     exponent = 0                #: see :py:attr:`Variable.exponent`
 
-    def __init__(self, name, operation, unit="", format='%g', unitFormat=r'\mathrm{%s}', exponent=0):
+    def __init__(self, name, operation, unit="", format='%.4g', unitFormat=r'\mathrm{%s}', exponent=0):
         self.name = name
         self.operation = Operation(_NONE, operation) if isinstance(
             operation, Variable) else operation
@@ -1069,6 +1108,7 @@ class Expression(object):
         self.format = format
         self.unitFormat = unitFormat
         self.exponent = exponent
+        self.set_format()
 
     def _get_operation(self):
         return self.operation
@@ -1077,6 +1117,17 @@ class Expression(object):
         self.operation = o
     # : Shortcut for :py:meth:`operation <Expression.operation>`
     o = property(_get_operation, _set_operation)
+
+    def set_format(self):
+        v = self.strResult()
+        try:
+            float(v)
+            if v < 1000:
+                self.format = '%.4g'
+            else:
+                self.format = '%.0f'
+        except ValueError:
+            self.format = self.format
 
     def strSymbolic(self):
         """Returns string of symbolic representation of receiver (its name)
@@ -1132,9 +1183,13 @@ class Expression(object):
         f = format if format else self.format
         e = exponent if exponent != 0 else self.exponent
         if e == 0:
-            if r < 0:
+            if r < -1000:
+                return fr'\left( {r: .0f} \right)'
+            elif r < 0:
                 return r'\left(%s\right)' % f % r
-            return '%s' % f % r
+            elif r < 1000:
+                return fr'{r: .4g}'
+            return fr'{r: .0f}'
         val = float(self)*math.pow(10, -e)
         if r < 0:
             return r'\left( %s %s \right)' % (f % val, '\cdot 10^{%d}' % e)
@@ -1299,7 +1354,7 @@ class Expression(object):
 Expression.__add__ = _add
 Expression.__sub__ = _sub
 Expression.__mul__ = _mul
-Expression.__div__ = _div
+Expression.__truediv__ = _div
 Expression.__floordiv__ = _div2
 Expression.__pow__ = _pow
 Expression.__radd__ = _radd
