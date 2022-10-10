@@ -7,24 +7,12 @@ It was originally written by [Jan Stransky](https://mech.fsv.cvut.cz/~stransky)
 from Czech Technical University, Faculty of Civil Engineering, Department of
 Structural Mechanics, but the latest update was done in 2015.
 
-## Usage
-Install using pip
-```
-pip install latexexpr
-```
+It was updated and posted by Jakub Kaderka in 2022 at the forked repo.
 
-Enjoy
-```
-import latexexpr
-v1 = latexexpr.Variable('H_{ello}',3.25,'m')
-print(f'$$ {v1} $$')
-v2 = latexexpr.Variable('W^{orld}',5.63,'m')
-print(f'$$ {v2} $$')
-e1 = latexexpr.Expression('E_{xample}',v1+v2,'m')
-print(f'$$ {e1} $$')
-```
+This fork has been tuned for a specific application of displaying engineering calculations.
 
 ## Links
+* [Forked Repo](https://github.com/kajusK/latexexpr)
 * [Documentation](https://kajusk.github.io/latexexpr/)
 * [Original webpage](https://mech.fsv.cvut.cz/~stransky/en/software/latexexpr/)
 * [Original documentation](https://mech.fsv.cvut.cz/~stransky/software/latexexpr/doc/index.html)
