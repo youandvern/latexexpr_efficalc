@@ -111,7 +111,7 @@ def _pow(self, v): return POW(self, v)
 def _radd(self, v): return ADD(v, self)
 def _rsub(self, v): return SUB(v, self)
 def _rmul(self, v): return MUL(v, self)
-def _rdiv(self, v): return DIV(v, self)
+def _rtruediv(self, v): return DIV(v, self)
 def _rdiv2(self, v): return DIV2(v, self)
 def _rpow(self, v): return POW(v, self)
 def _neg(self): return NEG(self)
@@ -177,7 +177,6 @@ class Variable(object):
             self._value = None
         else:
             try:
-                float(v)
                 self._value = float(v)
             except ValueError:
                 self._value = str(v).strip()
@@ -188,8 +187,7 @@ class Variable(object):
     def set_format(self):
         v = self._value
         try:
-            float(v)
-            if v < 1000:
+            if float(v) < 1000:
                 self.format = '%.4g'
             else:
                 self.format = '%.0f'
@@ -398,7 +396,7 @@ Variable.__pow__ = _pow
 Variable.__radd__ = _radd
 Variable.__rsub__ = _rsub
 Variable.__rmul__ = _rmul
-Variable.__rdiv__ = _rdiv
+Variable.__rtruediv__ = _rtruediv
 Variable.__rfloordiv__ = _rdiv2
 Variable.__rpow__ = _rpow
 Variable.__neg__ = _neg
@@ -822,7 +820,7 @@ Operation.__pow__ = _pow
 Operation.__radd__ = _radd
 Operation.__rsub__ = _rsub
 Operation.__rmul__ = _rmul
-Operation.__rdiv__ = _rdiv
+Operation.__rtruediv__ = _rtruediv
 Operation.__rfloordiv__ = _rdiv2
 Operation.__rpow__ = _rpow
 Operation.__neg__ = _neg
@@ -1121,8 +1119,7 @@ class Expression(object):
     def set_format(self):
         v = self.strResult()
         try:
-            float(v)
-            if v < 1000:
+            if float(v) < 1000:
                 self.format = '%.4g'
             else:
                 self.format = '%.0f'
@@ -1360,7 +1357,7 @@ Expression.__pow__ = _pow
 Expression.__radd__ = _radd
 Expression.__rsub__ = _rsub
 Expression.__rmul__ = _rmul
-Expression.__rdiv__ = _rdiv
+Expression.__rtruediv__ = _rtruediv
 Expression.__rfloordiv__ = _rdiv2
 Expression.__rpow__ = _rpow
 Expression.__neg__ = _neg
