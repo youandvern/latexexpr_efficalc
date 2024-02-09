@@ -6,6 +6,7 @@
 #
 #                       Copyright (C)  2013-2015  Jan Stransky
 #                       Copyright (C)  2022  	  Jakub Kaderka
+#                       Copyright (C)  2024  	  Andrew Young
 #
 #  LaTeX Expression is free software: you can redistribute it and/or modify it
 #  under the terms of the GNU Lesser General Public License as published by the
@@ -55,6 +56,7 @@ If `sympy <http://www.sympy.org>`_ is present, it also defines aforementioned me
 
 import copy
 import latexexpr_efficalc
+
 try:
     import sympy
 except ImportError:
@@ -135,7 +137,8 @@ def _operation2sympy(arg, varMap=None, substituteFloats=True):
             sympyOp, args = sympy.log, None
         elif t == latexexpr_efficalc._LOG10:
             sympyOp, args = sympy.log, (a, 10)  # TODO check formula
-        elif t in (latexexpr_efficalc._NONE, latexexpr_efficalc._RBRACKETS, latexexpr_efficalc._SBRACKETS, latexexpr_efficalc._CBRACKETS, latexexpr_efficalc._ABRACKETS, latexexpr_efficalc._POS):
+        elif t in (latexexpr_efficalc._NONE, latexexpr_efficalc._RBRACKETS, latexexpr_efficalc._SBRACKETS,
+                   latexexpr_efficalc._CBRACKETS, latexexpr_efficalc._ABRACKETS, latexexpr_efficalc._POS):
             return _operation2sympy(a, varMap, sf)
         if args is None:
             args = (_o2s(a, varMap, sf),)
@@ -162,7 +165,8 @@ def _sympy2operation(sympyExpr, varMap):
         return varMap[sympyExpr.name]
     args = [_s2o(a, varMap) for a in sympyExpr.args]
     if isinstance(sympyExpr, sympy.Add):
-        if len(args) == 2 and isinstance(args[1], latexexpr_efficalc.Operation) and args[1].type == latexexpr_efficalc._NEG:
+        if len(args) == 2 and isinstance(args[1], latexexpr_efficalc.Operation) and args[
+            1].type == latexexpr_efficalc._NEG:
             args[1] = args[1].args[0]
             return latexexpr_efficalc.SUB(*args)
         return latexexpr_efficalc.ADD(*args)
@@ -172,7 +176,8 @@ def _sympy2operation(sympyExpr, varMap):
                 return -args[1]
             if isinstance(args[1], latexexpr_efficalc.Variable) and args[1].name == '-1':
                 return -args[0]
-        elif len(args) == 2 and isinstance(args[1], latexexpr_efficalc.Operation) and args[1].type == latexexpr_efficalc._DIV:
+        elif len(args) == 2 and isinstance(args[1], latexexpr_efficalc.Operation) and args[
+            1].type == latexexpr_efficalc._DIV:
             if args[1].args[0].value == 1.:
                 return args[0] / args[1].args[1]
             if all(a.type == latexexpr_efficalc._LN for a in (args[0], args[1].args[0])):
@@ -201,15 +206,15 @@ def _sympy2operation(sympyExpr, varMap):
             args[0] = latexexpr_efficalc.BRACKETS(a)
         return args[0] ** args[1]
     for s, l in (
-        (sympy.Abs, latexexpr_efficalc.ABS),
-        (sympy.sin, latexexpr_efficalc.SIN),
-        (sympy.cos, latexexpr_efficalc.COS),
-        (sympy.tan, latexexpr_efficalc.TAN),
-        (sympy.sinh, latexexpr_efficalc.SINH),
-        (sympy.cosh, latexexpr_efficalc.COSH),
-        (sympy.tanh, latexexpr_efficalc.TANH),
-        (sympy.tanh, latexexpr_efficalc.TANH),
-        (sympy.log, latexexpr_efficalc.LN),
+            (sympy.Abs, latexexpr_efficalc.ABS),
+            (sympy.sin, latexexpr_efficalc.SIN),
+            (sympy.cos, latexexpr_efficalc.COS),
+            (sympy.tan, latexexpr_efficalc.TAN),
+            (sympy.sinh, latexexpr_efficalc.SINH),
+            (sympy.cosh, latexexpr_efficalc.COSH),
+            (sympy.tanh, latexexpr_efficalc.TANH),
+            (sympy.tanh, latexexpr_efficalc.TANH),
+            (sympy.log, latexexpr_efficalc.LN),
     ):
         if isinstance(sympyExpr, s):
             return l(args[0])
@@ -396,8 +401,9 @@ def collect(arg, syms, substituteFloats=False, **kw):
         return ret
     if isinstance(arg, latexexpr_efficalc.Operation):
         s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
-        if not (isinstance(syms, latexexpr_efficalc.Variable) or all(isinstance(latexexpr_efficalc.Variable(s) for s in syms))):
-            raise LaTeXExpressionError("TODO")
+        if not (isinstance(syms, latexexpr_efficalc.Variable) or all(
+                isinstance(latexexpr_efficalc.Variable(s) for s in syms))):
+            raise latexexpr_efficalc.LaTeXExpressionError("TODO")
         syms = sympy.Symbol(syms.name) if isinstance(syms, latexexpr_efficalc.Variable) else [
             sympy.Symbol(s.name) for s in syms]
         s = sympy.collect(s, syms, **kw)
@@ -510,8 +516,8 @@ def _copyOperation(o1, o2):
 
 # TESTING
 if __name__ == "__main__":
-
     import latexexpr_efficalc.sympy as lsympy
+
     v1 = latexexpr_efficalc.Variable('v1', None)
     v2 = latexexpr_efficalc.Variable('v2', None)
     v3 = latexexpr_efficalc.Variable('v3', 1.23)
@@ -531,6 +537,7 @@ if __name__ == "__main__":
     print(lsympy.simplify(e3))
 
     import latexexpr_efficalc.sympy as lsympy
+
     v1 = latexexpr_efficalc.Variable('v1', None)
     v2 = latexexpr_efficalc.Variable('v2', None)
     v3 = latexexpr_efficalc.Variable('v3', 1.23)
@@ -550,6 +557,7 @@ if __name__ == "__main__":
     print(lsympy.simplify(e3))
 
     import latexexpr_efficalc.sympy as lsympy
+
     x = latexexpr_efficalc.Variable('x', None)
     e1 = latexexpr_efficalc.Expression('e1', (x + 1) ** 2)
     print(lsympy.expand(e1, substituteFloats=True))
@@ -559,6 +567,7 @@ if __name__ == "__main__":
     print(lsympy.expand(e3))
 
     import latexexpr_efficalc.sympy as lsympy
+
     x = latexexpr_efficalc.Variable('x', None)
     y = latexexpr_efficalc.Variable('y', None)
     z = latexexpr_efficalc.Variable('z', None)
@@ -568,6 +577,7 @@ if __name__ == "__main__":
     print(lsympy.factor(e2))
 
     import latexexpr_efficalc.sympy as lsympy
+
     x = latexexpr_efficalc.Variable('x', None)
     y = latexexpr_efficalc.Variable('y', None)
     z = latexexpr_efficalc.Variable('z', None)
@@ -575,6 +585,7 @@ if __name__ == "__main__":
     print(lsympy.collect(e1, x))
 
     import latexexpr_efficalc.sympy as lsympy
+
     x = latexexpr_efficalc.Variable('x', None)
     y = latexexpr_efficalc.Variable('y', None)
     z = latexexpr_efficalc.Variable('z', None)
@@ -583,12 +594,13 @@ if __name__ == "__main__":
     e2 = latexexpr_efficalc.Expression('e2', 1 / x + (3 * x / 2 - 2) / (x - 4))
     print(lsympy.cancel(e2))
     e3 = latexexpr_efficalc.Expression(
-        'e3', (x*y**2 - 2*x*y*z + x*z**2 + y**2 - 2*y*z + z**2) / (x**2 - 1))
+        'e3', (x * y ** 2 - 2 * x * y * z + x * z ** 2 + y ** 2 - 2 * y * z + z ** 2) / (x ** 2 - 1))
     print(lsympy.cancel(e3))
 
     import latexexpr_efficalc.sympy as lsympy
+
     x = latexexpr_efficalc.Variable('x', None)
     e1 = latexexpr_efficalc.Expression(
-        'e1', (4*x**3 + 21*x**2 + 10*x + 12) / (x**4 + 5*x**3 + 5*x**2 + 4*x))
+        'e1', (4 * x ** 3 + 21 * x ** 2 + 10 * x + 12) / (x ** 4 + 5 * x ** 3 + 5 * x ** 2 + 4 * x))
     print(lsympy.apart(e1))
 ######################################################################

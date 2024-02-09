@@ -6,6 +6,7 @@
 #
 #                       Copyright (C)  2013-2015  Jan Stransky
 #                       Copyright (C)  2022  	  Jakub Kaderka
+#                       Copyright (C)  2024  	  Andrew Young
 #
 #  LaTeX Expression is free software: you can redistribute it and/or modify it
 #  under the terms of the GNU Lesser General Public License as published by the
@@ -94,6 +95,7 @@ _DEBUG = False
 
 class LaTeXExpressionError(Exception):
     '''Module exception class'''
+
     def __init__(self, msg):
         self.msg = msg
 
@@ -103,19 +105,47 @@ class LaTeXExpressionError(Exception):
 
 # Auxiliary functions
 def _add(self, v): return ADD(self, v)
+
+
 def _sub(self, v): return SUB(self, v)
+
+
 def _mul(self, v): return MUL(self, v)
+
+
 def _div(self, v): return DIV(self, v)
+
+
 def _div2(self, v): return DIV2(self, v)
+
+
 def _pow(self, v): return POW(self, v)
+
+
 def _radd(self, v): return ADD(v, self)
+
+
 def _rsub(self, v): return SUB(v, self)
+
+
 def _rmul(self, v): return MUL(v, self)
+
+
 def _rtruediv(self, v): return DIV(v, self)
+
+
 def _rdiv2(self, v): return DIV2(v, self)
+
+
 def _rpow(self, v): return POW(v, self)
+
+
 def _neg(self): return NEG(self)
+
+
 def _pos(self): return POS(self)
+
+
 def _abs(self): return ABS(self)
 
 
@@ -151,8 +181,8 @@ class Variable(object):
             >>> print v8
             F
     """
-    name = ''                   #: symbolic name
-    unit = ''                   #: physical unit
+    name = ''  #: symbolic name
+    unit = ''  #: physical unit
     #: string to be formatted by the numeric value (with '%' operation)
     format = '%.4g  '
     # : string to be formatted by physical unit string (with '%' operation)
@@ -181,6 +211,7 @@ class Variable(object):
             except ValueError:
                 self._value = str(v).strip()
         # self._value = None if v is None else float(v)
+
     # : numeric value. If value==None, than the Variable is considered as symbolic
     value = property(_get_value, _set_value)
 
@@ -248,7 +279,7 @@ class Variable(object):
             elif result < 1000:
                 return fr'{result: .4g}'
             return fr'{result: .0f}'  # r'%s'%f%r
-        val = self.value*math.pow(10, -e)
+        val = self.value * math.pow(10, -e)
         if self.value < 0.:
             return r'\left( %s %s \right)' % (f % val, '\cdot 10^{%d}' % e)
         return '{ %s %s }' % (f % val, '\cdot 10^{%d}' % e)
@@ -443,7 +474,7 @@ _supportedOperations1 = (_NONE, _NEG, _POS, _ABS, _SQR, _SQRT, _SIN, _COS, _TAN,
 _supportedOperations2 = (_SUB, _DIV, _DIV2, _POW, _ROOT, _LOG)
 _supportedOperationsN = (_ADD, _MUL, _MAX, _MIN)
 _supportedOperations = _supportedOperations1 + \
-    _supportedOperations2 + _supportedOperationsN
+                       _supportedOperations2 + _supportedOperationsN
 
 
 class Operation(object):
@@ -475,14 +506,15 @@ class Operation(object):
             >>> print o4
             {a_{22}} + {F} = 3.45 + 2.34
     """
-    type = None   #: arithmetic type of operation
-    args = []     #: argument list subjected to the operation :py:attr:`Operation.type`
-    format = '%.4g' # see :py:attr:`Variable.format`
+    type = None  #: arithmetic type of operation
+    args = []  #: argument list subjected to the operation :py:attr:`Operation.type`
+    format = '%.4g'  # see :py:attr:`Variable.format`
     exponent = 0  # see :py:attr:`Variable.exponent`
 
     def __init__(self, type, *args):
         if not type in _supportedOperations:
-            raise LaTeXExpressionError('operation %s not in supported operations %s'%(type,str(_supportedOperations)))
+            raise LaTeXExpressionError(
+                'operation %s not in supported operations %s' % (type, str(_supportedOperations)))
         self.type = type
         self.args = self.__checkArgs(args)
         self.format = '%.4g'
@@ -530,7 +562,7 @@ class Operation(object):
             if t == _DIV2:
                 return r'%s / %s' % (v0, v1)
             if t == _POW:
-                return r'{\left( %s \right)}^{ %s }'%(v0,v1)
+                return r'{\left( %s \right)}^{ %s }' % (v0, v1)
             if t == _ROOT:
                 return r'\sqrt[ %s ]{ %s }' % (v0, v1)
             if t == _LOG:
@@ -553,17 +585,17 @@ class Operation(object):
             if t == _SQRT:
                 return r'\sqrt{ %s }' % v
             if t == _SIN:
-                return r'\sin{\left( %s \right)}'%v
+                return r'\sin{\left( %s \right)}' % v
             if t == _COS:
-                return r'\cos{\left( %s \right)}'%v
+                return r'\cos{\left( %s \right)}' % v
             if t == _TAN:
-                return r'\tan{\left( %s \right)}'%v
+                return r'\tan{\left( %s \right)}' % v
             if t == _SINH:
-                return r'\sinh{\left( %s \right)}'%v
+                return r'\sinh{\left( %s \right)}' % v
             if t == _COSH:
-                return r'\cosh{\left( %s \right)}'%v
+                return r'\cosh{\left( %s \right)}' % v
             if t == _TANH:
-                return r'\tanh{\left( %s \right)}'%v
+                return r'\tanh{\left( %s \right)}' % v
             if t == _EXP:
                 return r'\mathrm{e}^{ %s }' % v
             if t == _LN:
@@ -641,11 +673,11 @@ class Operation(object):
             if r < -1000:
                 return fr'\left( {r: .0f} \right)'
             elif r < 0:
-                return  r'\left(%s\right)' % f % r
+                return r'\left(%s\right)' % f % r
             elif r < 1000:
                 return fr'{r: .4g}'
             return fr'{r: .0f}'
-        val = r*math.pow(10, -e)
+        val = r * math.pow(10, -e)
         if r < 0.:
             return r'\left( %s %s \right)' % (f % val, '\cdot 10^{%d}' % e)
         return '{ %s %s }' % (f % val, '\cdot 10^{%d}' % e)
@@ -671,7 +703,7 @@ class Operation(object):
             if t == _ADD:
                 return sum(v)
             if t == _MUL:
-                return reduce(lambda x, y: x*y, v, 1.)
+                return reduce(lambda x, y: x * y, v, 1.)
             if t == _MAX:
                 return max(v)
             if t == _MIN:
@@ -691,9 +723,9 @@ class Operation(object):
             if t == _POW:
                 return math.pow(v0, v1)
             if t == _ROOT:
-                return math.pow(v1, 1./v0)
+                return math.pow(v1, 1. / v0)
             if t == _LOG:
-                return log(v1)/log(v0)
+                return log(v1) / log(v0)
             if _DEBUG:
                 print(t)
                 raise LaTeXExpressionError(t)
@@ -728,7 +760,7 @@ class Operation(object):
             if t == _LN:
                 return math.log(v)
             if t == _LOG10:
-                return math.log(v)/math.log(10)
+                return math.log(v) / math.log(10)
             if t == _RBRACKETS:
                 return v
             if t == _SBRACKETS:
@@ -833,6 +865,8 @@ Operation.__ifloordiv__ = _div2
 Operation.__ineg__ = _neg
 Operation.__ipos__ = _pos
 Operation.__abs__ = _abs
+
+
 ######################################################################
 
 
@@ -1051,6 +1085,8 @@ def ABRACKETS(*args):
 
     :param Variable|Expression|Operation args: 1 objects for angle brackets ( ⟨arg⟩ )"""
     return Operation(_ABRACKETS, *args)
+
+
 ######################################################################
 
 
@@ -1091,12 +1127,12 @@ class Expression(object):
             >>> print e4
             E_4 = {a_{22}} + {F} = 3.45 + 2.34 = 5.79 \ \mathrm{mF}
     """
-    name = ""                   #: symbolic name of the expression
-    operation = None            #: underlying :class:`.Operation` instance
-    unit = ""                   #: see :py:attr:`Variable.unit`
-    format = "%.4g"               #: see :py:attr:`Variable.format`
+    name = ""  #: symbolic name of the expression
+    operation = None  #: underlying :class:`.Operation` instance
+    unit = ""  #: see :py:attr:`Variable.unit`
+    format = "%.4g"  #: see :py:attr:`Variable.format`
     unitFormat = r"\mathrm{%s}"  # : see :py:attr:`Variable.unitFormat`
-    exponent = 0                #: see :py:attr:`Variable.exponent`
+    exponent = 0  #: see :py:attr:`Variable.exponent`
 
     def __init__(self, name, operation, unit="", format='%.4g', unitFormat=r'\mathrm{%s}', exponent=0):
         self.name = name
@@ -1113,6 +1149,7 @@ class Expression(object):
 
     def _set_operation(self, o):
         self.operation = o
+
     # : Shortcut for :py:meth:`operation <Expression.operation>`
     o = property(_get_operation, _set_operation)
 
@@ -1187,7 +1224,7 @@ class Expression(object):
             elif r < 1000:
                 return fr'{r: .4g}'
             return fr'{r: .0f}'
-        val = float(self)*math.pow(10, -e)
+        val = float(self) * math.pow(10, -e)
         if r < 0:
             return r'\left( %s %s \right)' % (f % val, '\cdot 10^{%d}' % e)
         return '{ %s %s }' % (f % val, '\cdot 10^{%d}' % e)
@@ -1314,7 +1351,8 @@ class Expression(object):
         whats = ('float', 'str', 'valunit', 'symb', 'subst', 'all')
         if not what in whats:
             raise LaTeXExpressionError('%s not in %s' % (what, whats))
-        val = float(self) if what == 'float' else self.strResult() if what == 'str' else self.strResultWithUnit() if what == 'valunit' else self.strSymbolic(
+        val = float(
+            self) if what == 'float' else self.strResult() if what == 'str' else self.strResultWithUnit() if what == 'valunit' else self.strSymbolic(
         ) if what == 'symb' else self.strSubstituted() if what == 'subst' else str(self) if what == 'all' else None
         return toLaTeXVariable(name, val, command)
 
@@ -1379,6 +1417,8 @@ E = Variable('\mathrm{e}', math.e)
 """Variable instance representing Euler number"""
 PI = Variable('\pi', math.pi)
 """Variable instance representing pi"""
+
+
 ######################################################################
 
 
@@ -1443,12 +1483,13 @@ def toLaTeXVariable(name, what, command='def'):
     else:
         raise LaTeXExpressionError(
             "toLaTeXVariable: wrong command parameter (should be in ['def','newcommand','renewcommand']")
+
+
 ######################################################################
 
 
 # TESTING
 if __name__ == "__main__":
-
     v1 = Variable('a_{22}', 3.45, 'mm')
     print(v1)
     v2 = Variable('F', 5.876934835, 'kN')
@@ -1526,12 +1567,12 @@ if __name__ == "__main__":
     v5 = Variable('F', 5.876934835, 'kN')
     v6 = Variable('F', -6.543, 'kN')
     v8 = Variable('F', None, 'kN')
-    o3 = (v1+v2)/v3
+    o3 = (v1 + v2) / v3
     print(o3)
     o4 = v1 + v8
     print(o4)
-    e2 = Expression('E_2', (v1+v2)/v3, 'mm')
-    o2 = MUL(RBRACKETS(e2+v4), v5, v6)
+    e2 = Expression('E_2', (v1 + v2) / v3, 'mm')
+    o2 = MUL(RBRACKETS(e2 + v4), v5, v6)
     print(o2)
     v8.value = 2.34
     print(o4)
@@ -1539,43 +1580,43 @@ if __name__ == "__main__":
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    o3 = (v1+v2)/v3
+    o3 = (v1 + v2) / v3
     print(str(o3))
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    o3 = (v1+v2)/v3
+    o3 = (v1 + v2) / v3
     print(o3.strSymbolic())
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    o3 = (v1+v2)/v3
+    o3 = (v1 + v2) / v3
     print(o3.strSubstituted())
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    o3 = (v1+v2)/v3
+    o3 = (v1 + v2) / v3
     print(o3.strResult())
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    o3 = (v1+v2)/v3
+    o3 = (v1 + v2) / v3
     print(o3.result())
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    o3 = (v1+v2)/v3
+    o3 = (v1 + v2) / v3
     print(float(o3))
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    o3 = (v1+v2)/v3
+    o3 = (v1 + v2) / v3
     print(int(o3))
 
     v1 = Variable('a_{22}', 3.45, 'mm')
@@ -1588,7 +1629,7 @@ if __name__ == "__main__":
     o1 = (v1 + SQRT(v2)) / (v3 * v4) + v5
     e1 = Expression('E_1^i', SBRACKETS(o1) - SQR(v6), 'kNm')
     print(e1)
-    e2 = Expression('E_2', (v1+v2)/v3, 'mm')
+    e2 = Expression('E_2', (v1 + v2) / v3, 'mm')
     print(e2)
     o4 = v1 + v8
     e4 = Expression('E_4', o4, 'mF')
@@ -1599,55 +1640,55 @@ if __name__ == "__main__":
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    e2 = Expression('E_2', (v1+v2)/v3, 'mm')
+    e2 = Expression('E_2', (v1 + v2) / v3, 'mm')
     print(str(e2))
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    e2 = Expression('E_2', (v1+v2)/v3, 'mm')
+    e2 = Expression('E_2', (v1 + v2) / v3, 'mm')
     print(e2.strSymbolic())
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    e2 = Expression('E_2', (v1+v2)/v3, 'mm')
+    e2 = Expression('E_2', (v1 + v2) / v3, 'mm')
     print(e2.strSubstituted())
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    e2 = Expression('E_2', (v1+v2)/v3, 'mm')
+    e2 = Expression('E_2', (v1 + v2) / v3, 'mm')
     print(e2.strResult())
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    e2 = Expression('E_2', (v1+v2)/v3, 'mm')
+    e2 = Expression('E_2', (v1 + v2) / v3, 'mm')
     print(e2.strResultWithUnit())
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    e2 = Expression('E_2', (v1+v2)/v3, 'mm')
+    e2 = Expression('E_2', (v1 + v2) / v3, 'mm')
     print(e2.result())
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    e2 = Expression('E_2', (v1+v2)/v3, 'mm')
+    e2 = Expression('E_2', (v1 + v2) / v3, 'mm')
     print(float(e2))
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    e2 = Expression('E_2', (v1+v2)/v3, 'mm')
+    e2 = Expression('E_2', (v1 + v2) / v3, 'mm')
     print(int(e2))
 
     v1 = Variable('a_{22}', 3.45, 'mm')
     v2 = Variable('F', 5.876934835, 'kN')
     v3 = Variable('F', 4.34, 'kN', exponent=-2)
-    e2 = Expression('E_2', (v1+v2)/v3, 'mm')
+    e2 = Expression('E_2', (v1 + v2) / v3, 'mm')
     print(e2.toLaTeXVariable('ETWO', 'float'))
     print(e2.toLaTeXVariable('ETWO', 'str', 'newcommand'))
     print(e2.toLaTeXVariable('ETWO', 'valunit', 'renewcommand'))
