@@ -1,0 +1,498 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Other module members" href="other_members.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+        <title>Sympy extension - LaTeX Expression for Efficalc 0.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">LaTeX Expression for Efficalc 0.5 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">LaTeX Expression for Efficalc 0.5 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="classes.html">Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predefined_operations.html">Predefined Operation instance creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predefined_variables.html">Predefined Variable instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other_members.html">Other module members</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Sympy extension</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-latexexpr_efficalc.sympy">
+<span id="sympy-extension"></span><h1>Sympy extension<a class="headerlink" href="#module-latexexpr_efficalc.sympy" title="Link to this heading">#</a></h1>
+<p>latexexpr_efficalc.sympy is an extension for LaTeXExpression for symbolic operations (specifically <a class="reference internal" href="#latexexpr_efficalc.sympy.simplify" title="latexexpr_efficalc.sympy.simplify"><code class="xref py py-func docutils literal notranslate"><span class="pre">simplify()</span></code></a>, <a class="reference internal" href="#latexexpr_efficalc.sympy.expand" title="latexexpr_efficalc.sympy.expand"><code class="xref py py-func docutils literal notranslate"><span class="pre">expand()</span></code></a>, <a class="reference internal" href="#latexexpr_efficalc.sympy.factor" title="latexexpr_efficalc.sympy.factor"><code class="xref py py-func docutils literal notranslate"><span class="pre">factor()</span></code></a>, <a class="reference internal" href="#latexexpr_efficalc.sympy.collect" title="latexexpr_efficalc.sympy.collect"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect()</span></code></a>, <a class="reference internal" href="#latexexpr_efficalc.sympy.cancel" title="latexexpr_efficalc.sympy.cancel"><code class="xref py py-func docutils literal notranslate"><span class="pre">cancel()</span></code></a>, <a class="reference internal" href="#latexexpr_efficalc.sympy.apart" title="latexexpr_efficalc.sympy.apart"><code class="xref py py-func docutils literal notranslate"><span class="pre">apart()</span></code></a> functions). It requires <a class="reference external" href="http://www.sympy.org">sympy</a> module. Most of the examples in this documentation is borrowed from <a class="reference external" href="http://docs.sympy.org/dev/tutorial/simplification.html">sympy documentation</a>.</p>
+<p>If <a class="reference external" href="http://www.sympy.org">sympy</a> is present, it also defines aforementioned methods on <a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a> and <a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code></a> classes, so it is possible to use both <a class="reference internal" href="#latexexpr_efficalc.sympy.simplify" title="latexexpr_efficalc.sympy.simplify"><code class="xref py py-func docutils literal notranslate"><span class="pre">simplify()</span></code></a> and o.simplify():</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">latexexpr_efficalc.sympy</span> <span class="k">as</span> <span class="nn">lsympy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;v1&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;v2&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v3</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;v3&#39;</span><span class="p">,</span><span class="mf">1.23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v4</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;v4&#39;</span><span class="p">,</span><span class="mf">4.56</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e1&#39;</span><span class="p">,</span><span class="n">v1</span><span class="o">+</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="o">+</span><span class="n">v3</span><span class="o">+</span><span class="n">v2</span><span class="o">+</span><span class="n">v3</span><span class="o">-</span><span class="n">v4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e1</span>
+<span class="go">e1 = {v1} + {v1} + {v2} + {v3} + {v2} + {v3} - {v4}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">e1</span><span class="p">)</span>
+<span class="go">e1 = \left( - {v4} \right) + {2} \cdot {v1} + {2} \cdot {v2} + {2} \cdot {v3}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span><span class="n">substituteFloats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">e1 = {-2.1} + {2} \cdot {v1} + {2} \cdot {v2}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e1</span>
+<span class="go">e1 = \left( - {v4} \right) + {2} \cdot {v1} + {2} \cdot {v2} + {2} \cdot {v3}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">substituteFloats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e1</span>
+<span class="go">e1 = {-2.1} + {2} \cdot {v1} + {2} \cdot {v2}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e2&#39;</span><span class="p">,</span><span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">SIN</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">COS</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">e2</span><span class="p">)</span>
+<span class="go">e2 = 1 = 1 \ \mathrm{} = 1 \ \mathrm{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e3</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e3&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">e3</span><span class="p">)</span>
+<span class="go">e3 = {-1} + {x}</span>
+</pre></div>
+</div>
+<section id="sympy-functions">
+<h2>Sympy functions<a class="headerlink" href="#sympy-functions" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="latexexpr_efficalc.sympy.simplify">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.sympy.</span></span><span class="sig-name descname"><span class="pre">simplify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">substituteFloats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sympy.simplify" title="Link to this definition">#</a></dt>
+<dd><p>Performs simplify operation on arg. Symbolic variables are left symbolic, but variables with values are treated as the values (!)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arg</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><em>Operation</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><em>Expression</em></a>) – argument to be processed</p></li>
+<li><p><strong>substituteFloats</strong> (<em>bool</em>) – non-symbolic variables are treated as their float values if True, they are left otherwise</p></li>
+<li><p><strong>**kw</strong> – keywords for sympy.simplify() function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>type(arg)</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">latexexpr_efficalc.sympy</span> <span class="k">as</span> <span class="nn">lsympy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;v1&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;v2&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v3</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;v3&#39;</span><span class="p">,</span><span class="mf">1.23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v4</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;v4&#39;</span><span class="p">,</span><span class="mf">4.56</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e1&#39;</span><span class="p">,</span><span class="n">v1</span><span class="o">+</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="o">+</span><span class="n">v3</span><span class="o">+</span><span class="n">v2</span><span class="o">+</span><span class="n">v3</span><span class="o">-</span><span class="n">v4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e1</span>
+<span class="go">e1 = {v1} + {v1} + {v2} + {v3} + {v2} + {v3} - {v4}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">e1</span><span class="p">)</span>
+<span class="go">e1 = \left( - {v4} \right) + {2} \cdot {v1} + {2} \cdot {v2} + {2} \cdot {v3}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span><span class="n">substituteFloats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">e1 = {-2.1} + {2} \cdot {v1} + {2} \cdot {v2}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e1</span>
+<span class="go">e1 = \left( - {v4} \right) + {2} \cdot {v1} + {2} \cdot {v2} + {2} \cdot {v3}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">substituteFloats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e1</span>
+<span class="go">e1 = {-2.1} + {2} \cdot {v1} + {2} \cdot {v2}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e2&#39;</span><span class="p">,</span><span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">SIN</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">COS</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">e2</span><span class="p">)</span>
+<span class="go">e2 = 1 = 1 \ \mathrm{} = 1 \ \mathrm{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e3</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e3&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">e3</span><span class="p">)</span>
+<span class="go">e3 = {-1} + {x}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="latexexpr_efficalc.sympy.expand">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.sympy.</span></span><span class="sig-name descname"><span class="pre">expand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">substituteFloats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sympy.expand" title="Link to this definition">#</a></dt>
+<dd><p>Performs expand operation on arg. Symbolic variables are left symbolic, but variables with values are treated as the values (!)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arg</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><em>Operation</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><em>Expression</em></a>) – argument to be processed</p></li>
+<li><p><strong>substituteFloats</strong> (<em>bool</em>) – non-symbolic variables are treated as their float values if True, they are left otherwise</p></li>
+<li><p><strong>**kw</strong> – keywords for sympy.expand() function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>type(arg)</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">latexexpr_efficalc.sympy</span> <span class="k">as</span> <span class="nn">lsympy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span><span class="n">substituteFloats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">e1 = {1} + {2} \cdot {x} + { {x} }^{ {2} }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e2&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">e2</span><span class="p">)</span>
+<span class="go">e2 = {-6} + \left( - {x} \right) + { {x} }^{ {2} }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e3</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e3&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">e3</span><span class="p">)</span>
+<span class="go">e3 = -2 = \left( -2 \right) \ \mathrm{} = \left(-2\right) \ \mathrm{}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="latexexpr_efficalc.sympy.factor">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.sympy.</span></span><span class="sig-name descname"><span class="pre">factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">substituteFloats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sympy.factor" title="Link to this definition">#</a></dt>
+<dd><p>Performs factor operation on arg. Symbolic variables are left symbolic, but variables with values are treated as the values (!)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arg</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><em>Operation</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><em>Expression</em></a>) – argument to be processed</p></li>
+<li><p><strong>substituteFloats</strong> (<em>bool</em>) – non-symbolic variables are treated as their float values if True, they are left otherwise</p></li>
+<li><p><strong>**kw</strong> – keywords for sympy.factor() function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>type(arg)</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">latexexpr_efficalc.sympy</span> <span class="k">as</span> <span class="nn">lsympy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e1&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">e1</span><span class="p">)</span>
+<span class="go">e1 = \left( {1} + { {x} }^{ {2} } \right) \cdot \left( {-1} + {x} \right)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e2&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">z</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">e2</span><span class="p">)</span>
+<span class="go">e2 = {z} \cdot { {2} \cdot {y} + {x} }^{ {2} }</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="latexexpr_efficalc.sympy.collect">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.sympy.</span></span><span class="sig-name descname"><span class="pre">collect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">syms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">substituteFloats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sympy.collect" title="Link to this definition">#</a></dt>
+<dd><p>Performs collect operation on arg. Symbolic variables are left symbolic, but variables with values are treated as the values (!)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arg</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><em>Operation</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><em>Expression</em></a>) – argument to be processed</p></li>
+<li><p><strong>syms</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>|</em><em>[</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>]</em>) – variables to be collected</p></li>
+<li><p><strong>substituteFloats</strong> (<em>bool</em>) – non-symbolic variables are treated as their float values if True, they are left otherwise</p></li>
+<li><p><strong>**kw</strong> – keywords for sympy.collect() function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>type(arg)</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">latexexpr_efficalc.sympy</span> <span class="k">as</span> <span class="nn">lsympy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e1&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">3</span>  <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">z</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="go">e1 = {-3} + { {x} }^{ {3} } + {x} \cdot \left( {1} + {y} \right) + { {x} }^{ {2} } \cdot \left( {2} - {z} \right)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="latexexpr_efficalc.sympy.cancel">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.sympy.</span></span><span class="sig-name descname"><span class="pre">cancel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">substituteFloats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sympy.cancel" title="Link to this definition">#</a></dt>
+<dd><p>Performs cancel operation on arg. Symbolic variables are left symbolic, but variables with values are treated as the values (!)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arg</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><em>Operation</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><em>Expression</em></a>) – argument to be processed</p></li>
+<li><p><strong>substituteFloats</strong> (<em>bool</em>) – non-symbolic variables are treated as their float values if True, they are left otherwise</p></li>
+<li><p><strong>**kw</strong> – keywords for sympy.cancel() function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>type(arg)</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">latexexpr_efficalc.sympy</span> <span class="k">as</span> <span class="nn">lsympy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">cancel</span><span class="p">(</span><span class="n">e1</span><span class="p">)</span>
+<span class="go">e1 = \frac{ {1} }{ {x} } \cdot \left( {1} + {x} \right)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e2&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">cancel</span><span class="p">(</span><span class="n">e2</span><span class="p">)</span>
+<span class="go">e2 = \frac{ {1} }{ {2} \cdot { {x} }^{ {2} } + {-8} \cdot {x} } \cdot \left( {-8} + {-2} \cdot {x} + {3} \cdot { {x} }^{ {2} } \right)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e3</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e3&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">cancel</span><span class="p">(</span><span class="n">e3</span><span class="p">)</span>
+<span class="go">e3 = \frac{ {1} }{ {-1} + {x} } \cdot \left( { {z} }^{ {2} } + {-2} \cdot {y} \cdot {z} + { {y} }^{ {2} } \right)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="latexexpr_efficalc.sympy.apart">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.sympy.</span></span><span class="sig-name descname"><span class="pre">apart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">substituteFloats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sympy.apart" title="Link to this definition">#</a></dt>
+<dd><p>Performs apart operation on arg. Symbolic variables are left symbolic, but variables with values are treated as the values (!)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arg</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><em>Operation</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><em>Expression</em></a>) – argument to be processed</p></li>
+<li><p><strong>substituteFloats</strong> (<em>bool</em>) – non-symbolic variables are treated as their float values if True, they are left otherwise</p></li>
+<li><p><strong>**kw</strong> – keywords for sympy.apart() function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>type(arg)</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">latexexpr_efficalc.sympy</span> <span class="k">as</span> <span class="nn">lsympy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">latexexpr_efficalc</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;e1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">21</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">lsympy</span><span class="o">.</span><span class="n">apart</span><span class="p">(</span><span class="n">e1</span><span class="p">)</span>
+<span class="go">e1 = \frac{ {1} }{ {1} + {x} + { {x} }^{ {2} } } \cdot \left( {-1} + {2} \cdot {x} \right) + \left( - \frac{ {1} }{ {4} + {x} } \right) + {3} \cdot \frac{ {1} }{ {x} }</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="other_members.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Other module members</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2013-2015, Jan Stránský, 2022, Jakub Kaderka, 2023-2024, Andrew Young
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Sympy extension</a><ul>
+<li><a class="reference internal" href="#sympy-functions">Sympy functions</a><ul>
+<li><a class="reference internal" href="#latexexpr_efficalc.sympy.simplify"><code class="docutils literal notranslate"><span class="pre">simplify()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.sympy.expand"><code class="docutils literal notranslate"><span class="pre">expand()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.sympy.factor"><code class="docutils literal notranslate"><span class="pre">factor()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.sympy.collect"><code class="docutils literal notranslate"><span class="pre">collect()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.sympy.cancel"><code class="docutils literal notranslate"><span class="pre">cancel()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.sympy.apart"><code class="docutils literal notranslate"><span class="pre">apart()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=db78e746"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=32e29ea5"></script>
+    </body>
+</html>
