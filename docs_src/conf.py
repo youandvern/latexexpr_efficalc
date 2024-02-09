@@ -6,12 +6,12 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'LaTeX Expression'
-copyright = '2013-2015, Jan Stránský, 2022, Jakub Kaderka'
+project = 'LaTeX Expression for Efficalc'
+copyright = '2013-2015, Jan Stránský, 2022, Jakub Kaderka, 2023-2024, Andrew Young'
 author = 'Jan Stránský, Jakub Kaderka'
 
 # The full version, including alpha/beta/rc tags
-release = '0.4'
+release = '0.5'
 
 # -- General configuration ---------------------------------------------------
 

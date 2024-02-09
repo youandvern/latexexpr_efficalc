@@ -1,7 +1,7 @@
 
-LaTeX Expression project documentation
-**************************************
-.. automodule:: latexexpr
+LaTeX Expression for Efficalc project documentation
+***************************************************
+.. automodule:: latexexpr_efficalc
 
 .. toctree::
     :hidden:
@@ -101,13 +101,13 @@ Some other useful functions and other module members.
 
 Sympy extension
 **************************************
-.. automodule:: latexexpr.sympy
+.. automodule:: latexexpr_efficalc.sympy
 
 Sympy functions
 ====================
-.. autofunction:: latexexpr.sympy.simplify
-.. autofunction:: latexexpr.sympy.expand
-.. autofunction:: latexexpr.sympy.factor
-.. autofunction:: latexexpr.sympy.collect
-.. autofunction:: latexexpr.sympy.cancel
-.. autofunction:: latexexpr.sympy.apart
+.. autofunction:: latexexpr_efficalc.sympy.simplify
+.. autofunction:: latexexpr_efficalc.sympy.expand
+.. autofunction:: latexexpr_efficalc.sympy.factor
+.. autofunction:: latexexpr_efficalc.sympy.collect
+.. autofunction:: latexexpr_efficalc.sympy.cancel
+.. autofunction:: latexexpr_efficalc.sympy.apart
