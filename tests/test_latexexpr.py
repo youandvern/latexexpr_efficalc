@@ -1,9 +1,22 @@
-from latexexpr_efficalc import Expression, Variable, Operation
+from latexexpr_efficalc import Expression, Variable
 
 
-def test_variable():
+def test_variable_value():
     v1 = Variable('H_{ello}', 3.25, 'm')
     assert str(v1) == 'H_{ello} =  3.25 \\ \\mathrm{m}'
+
+
+def test_variable_addition():
+    a = Variable("a", 2, "in")
+    b = Variable("b", 3, "in")
+    c = a + b
+    assert c.result() == 5
+
+
+def test_variable_rsub():
+    a = Variable("a", 2, "in")
+    c = 1 - a
+    assert c.result() == -1
 
 
 def test_expression():

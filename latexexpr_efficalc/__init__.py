@@ -210,13 +210,14 @@ class Variable(object):
                 self._value = float(v)
             except ValueError:
                 self._value = str(v).strip()
-        # self._value = None if v is None else float(v)
 
     # : numeric value. If value==None, than the Variable is considered as symbolic
     value = property(_get_value, _set_value)
 
     def set_format(self):
         v = self._value
+        if v is None:
+            return
         try:
             if float(v) < 1000:
                 self.format = '%.4g'
@@ -417,22 +418,52 @@ class Variable(object):
         """
         return self.value is None
 
+    def __add__(self, other):
+        return _add(self, other)
 
-Variable.__add__ = _add
-Variable.__sub__ = _sub
-Variable.__mul__ = _mul
-Variable.__truediv__ = _div
-Variable.__floordiv__ = _div2
-Variable.__pow__ = _pow
-Variable.__radd__ = _radd
-Variable.__rsub__ = _rsub
-Variable.__rmul__ = _rmul
-Variable.__rtruediv__ = _rtruediv
-Variable.__rfloordiv__ = _rdiv2
-Variable.__rpow__ = _rpow
-Variable.__neg__ = _neg
-Variable.__pos__ = _pos
-Variable.__abs__ = _abs
+    def __sub__(self, other):
+        return _sub(self, other)
+
+    def __mul__(self, other):
+        return _mul(self, other)
+
+    def __truediv__(self, other):
+        return _div(self, other)
+
+    def __floordiv__(self, other):
+        return _div2(self, other)
+
+    def __pow__(self, other):
+        return _pow(self, other)
+
+    def __radd__(self, other):
+        return _radd(self, other)
+
+    def __rsub__(self, other):
+        return _rsub(self, other)
+
+    def __rmul__(self, other):
+        return _rmul(self, other)
+
+    def __rtruediv__(self, other):
+        return _rtruediv(self, other)
+
+    def __rfloordiv__(self, other):
+        return _rdiv2(self, other)
+
+    def __rpow__(self, other):
+        return _rpow(self, other)
+
+    def __neg__(self):
+        return _neg(self)
+
+    def __pos__(self):
+        return _pos(self)
+
+    def __abs__(self):
+        return _abs(self)
+
+
 ######################################################################
 
 
@@ -725,7 +756,7 @@ class Operation(object):
             if t == _ROOT:
                 return math.pow(v1, 1. / v0)
             if t == _LOG:
-                return log(v1) / log(v0)
+                return math.log(v1) / math.log(v0)
             if _DEBUG:
                 print(t)
                 raise LaTeXExpressionError(t)
@@ -842,29 +873,71 @@ class Operation(object):
         """
         return any(arg.isSymbolic() for arg in self.args)
 
+    def __add__(self, other):
+        return _add(self, other)
 
-Operation.__add__ = _add
-Operation.__sub__ = _sub
-Operation.__mul__ = _mul
-Operation.__truediv__ = _div
-Operation.__floordiv__ = _div2
-Operation.__pow__ = _pow
-Operation.__radd__ = _radd
-Operation.__rsub__ = _rsub
-Operation.__rmul__ = _rmul
-Operation.__rtruediv__ = _rtruediv
-Operation.__rfloordiv__ = _rdiv2
-Operation.__rpow__ = _rpow
-Operation.__neg__ = _neg
-Operation.__pos__ = _pos
-Operation.__iadd__ = _add
-Operation.__isub__ = _sub
-Operation.__imul__ = _mul
-Operation.__idiv__ = _div
-Operation.__ifloordiv__ = _div2
-Operation.__ineg__ = _neg
-Operation.__ipos__ = _pos
-Operation.__abs__ = _abs
+    def __sub__(self, other):
+        return _sub(self, other)
+
+    def __mul__(self, other):
+        return _mul(self, other)
+
+    def __truediv__(self, other):
+        return _div(self, other)
+
+    def __floordiv__(self, other):
+        return _div2(self, other)
+
+    def __pow__(self, other):
+        return _pow(self, other)
+
+    def __radd__(self, other):
+        return _radd(self, other)
+
+    def __rsub__(self, other):
+        return _rsub(self, other)
+
+    def __rmul__(self, other):
+        return _rmul(self, other)
+
+    def __rtruediv__(self, other):
+        return _rtruediv(self, other)
+
+    def __rfloordiv__(self, other):
+        return _rdiv2(self, other)
+
+    def __rpow__(self, other):
+        return _rpow(self, other)
+
+    def __neg__(self):
+        return _neg(self)
+
+    def __pos__(self):
+        return _pos(self)
+
+    def __iadd__(self, other):
+        return _add(self, other)
+
+    def __isub__(self, other):
+        return _sub(self, other)
+
+    def __imul__(self, other):
+        return _mul(self, other)
+
+    def __idiv__(self, other):
+        return _div(self, other)
+
+    def __ifloordiv__(self, other):
+        return _div2(self, other)
+
+    def __ineg__(self):
+        return _neg(self)
+
+    def __ipos__(self):
+        return _pos(self)
+
+    def __abs__(self):
+        return _abs(self)
 
 
 ######################################################################
@@ -1038,7 +1111,7 @@ def LOG(*args):
     """Returns logarithm Operation instance
 
     :param Variable|Expression|Operation args: 2 objects for logarithm ( log_arg0(arg1) = ln(arg1)/ln(arg0) )"""
-    return Operation(_EXP, *args)
+    return Operation(_LOG, *args)
 
 
 def LN(*args):
@@ -1385,22 +1458,52 @@ class Expression(object):
         """
         return self.operation.isSymbolic()
 
+    def __add__(self, other):
+        return _add(self, other)
 
-Expression.__add__ = _add
-Expression.__sub__ = _sub
-Expression.__mul__ = _mul
-Expression.__truediv__ = _div
-Expression.__floordiv__ = _div2
-Expression.__pow__ = _pow
-Expression.__radd__ = _radd
-Expression.__rsub__ = _rsub
-Expression.__rmul__ = _rmul
-Expression.__rtruediv__ = _rtruediv
-Expression.__rfloordiv__ = _rdiv2
-Expression.__rpow__ = _rpow
-Expression.__neg__ = _neg
-Expression.__pos__ = _pos
-Expression.__abs__ = _abs
+    def __sub__(self, other):
+        return _sub(self, other)
+
+    def __mul__(self, other):
+        return _mul(self, other)
+
+    def __truediv__(self, other):
+        return _div(self, other)
+
+    def __floordiv__(self, other):
+        return _div2(self, other)
+
+    def __pow__(self, other):
+        return _pow(self, other)
+
+    def __radd__(self, other):
+        return _radd(self, other)
+
+    def __rsub__(self, other):
+        return _rsub(self, other)
+
+    def __rmul__(self, other):
+        return _rmul(self, other)
+
+    def __rtruediv__(self, other):
+        return _rtruediv(self, other)
+
+    def __rfloordiv__(self, other):
+        return _rdiv2(self, other)
+
+    def __rpow__(self, other):
+        return _rpow(self, other)
+
+    def __neg__(self, other):
+        return _neg(self)
+
+    def __pos__(self, other):
+        return _pos(self)
+
+    def __abs__(self, other):
+        return _abs(self)
+
+
 ######################################################################
 
 
