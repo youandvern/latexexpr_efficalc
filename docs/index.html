@@ -157,7 +157,7 @@
   <ul>
 <li class="toctree-l1"><a class="reference internal" href="classes.html">Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="predefined_operations.html">Predefined Operation instance creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="predefined_variables.html">Predefined Variable instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predefined_variables.html">Predefined Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="other_members.html">Other module members</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sympy.html">Sympy extension</a></li>
 </ul>
@@ -222,16 +222,16 @@ M = r*F = 3.0*4.0 = 12 kNm
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v5</span>
 <span class="go">F = 5.87693 \ \mathrm{kN}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v6</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="o">-</span><span class="mf">6.543</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">o1</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span> <span class="o">+</span> <span class="n">SQRT</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">v3</span> <span class="o">*</span> <span class="n">v4</span><span class="p">)</span> <span class="o">+</span> <span class="n">v5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o1</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">v3</span> <span class="o">*</span> <span class="n">v4</span><span class="p">)</span> <span class="o">+</span> <span class="n">v5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">o1</span>
 <span class="go">\frac{ {a_{22}} + \sqrt{ {F} } }{ {F} \cdot {F} } + {F} = \frac{ 3.45 + \sqrt{ 5.87693 } }{ { 434 \cdot 10^{-2} } \cdot 2.5643 } + 5.87693</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;E_1^i&#39;</span><span class="p">,</span><span class="n">SBRACKETS</span><span class="p">(</span><span class="n">o1</span><span class="p">)</span> <span class="o">-</span> <span class="n">SQR</span><span class="p">(</span><span class="n">v6</span><span class="p">),</span><span class="s1">&#39;kNm&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;E_1^i&#39;</span><span class="p">,</span><span class="n">s_brackets</span><span class="p">(</span><span class="n">o1</span><span class="p">)</span> <span class="o">-</span> <span class="n">sqr</span><span class="p">(</span><span class="n">v6</span><span class="p">),</span><span class="s1">&#39;kNm&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e1</span>
 <span class="go">E_1^i = \left[ \frac{ {a_{22}} + \sqrt{ {F} } }{ {F} \cdot {F} } + {F} \right] - {F}^2 = \left[ \frac{ 3.45 + \sqrt{ 5.87693 } }{ { 434 \cdot 10^{-2} } \cdot 2.5643 } + 5.87693 \right] - \left( -6.543 \right)^2 = \left(-36.4061\right) \ \mathrm{kNm}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">v7</span> <span class="o">=</span> <span class="n">e1</span><span class="o">.</span><span class="n">toVariable</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v7</span> <span class="o">=</span> <span class="n">e1</span><span class="o">.</span><span class="n">to_variable</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v7</span>
 <span class="go">E_1^i = \left( -36.4061 \right) \ \mathrm{kNm}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v7</span><span class="o">.</span><span class="n">toLaTeXVariableAll</span><span class="p">(</span><span class="s1">&#39;MYV7&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v7</span><span class="o">.</span><span class="n">to_latex_variable_all</span><span class="p">(</span><span class="s1">&#39;MYV7&#39;</span><span class="p">)</span>
 <span class="go">\def\MYV7{E_1^i = \left( -36.4061 \right) \ \mathrm{kNm}}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v8</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">o4</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">+</span> <span class="n">v8</span>

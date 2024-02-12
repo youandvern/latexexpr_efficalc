@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Sympy extension" href="sympy.html" /><link rel="prev" title="Predefined Variable instances" href="predefined_variables.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Sympy extension" href="sympy.html" /><link rel="prev" title="Predefined Constants" href="predefined_variables.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
         <title>Other module members - LaTeX Expression for Efficalc 0.5 documentation</title>
@@ -157,7 +157,7 @@
   <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="classes.html">Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="predefined_operations.html">Predefined Operation instance creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="predefined_variables.html">Predefined Variable instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predefined_variables.html">Predefined Constants</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Other module members</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sympy.html">Sympy extension</a></li>
 </ul>
@@ -204,8 +204,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.saveVars">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">saveVars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">what</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/latexexprglobals.out'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.saveVars" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.save_vars">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">save_vars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">what</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/latexexprglobals.out'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.save_vars" title="Link to this definition">#</a></dt>
 <dd><p>Saves globally defined variables from current session into a file. This simplifies working within one LaTeX document, but several python sessions</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -218,8 +218,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.loadVars">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">loadVars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">what</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/latexexprglobals.out'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.loadVars" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.load_vars">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">load_vars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">what</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/latexexprglobals.out'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.load_vars" title="Link to this definition">#</a></dt>
 <dd><p>Loads saved variables form a file into global namespace</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -232,8 +232,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.toLaTeXVariable">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">toLaTeXVariable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">what</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.toLaTeXVariable" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.to_latex_variable">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">to_latex_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">what</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.to_latex_variable" title="Link to this definition">#</a></dt>
 <dd><p>Returns latex expression converting receiver to LaTeX variable using def, newcommand, or renewcommand LaTeX command</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -245,11 +245,11 @@
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="p">,</span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;varName&#39;</span><span class="p">,</span><span class="s1">&#39;some string content of the variable&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">toLaTeXVariable</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">to_latex_variable</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
 <span class="go">\def\varName{some string content of the variable}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">toLaTeXVariable</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="s1">&#39;newcommand&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">to_latex_variable</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="s1">&#39;newcommand&#39;</span><span class="p">)</span>
 <span class="go">\newcommand{\varName}{some string content of the variable}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">toLaTeXVariable</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="s1">&#39;renewcommand&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">to_latex_variable</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="s1">&#39;renewcommand&#39;</span><span class="p">)</span>
 <span class="go">\renewcommand{\varName}{some string content of the variable}</span>
 </pre></div>
 </div>
@@ -278,7 +278,7 @@
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Predefined Variable instances</div>
+                <div class="title">Predefined Constants</div>
                 
               </div>
             </a>
@@ -314,9 +314,9 @@
             <ul>
 <li><a class="reference internal" href="#">Other module members</a><ul>
 <li><a class="reference internal" href="#latexexpr_efficalc.LaTeXExpressionError"><code class="docutils literal notranslate"><span class="pre">LaTeXExpressionError</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.saveVars"><code class="docutils literal notranslate"><span class="pre">saveVars()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.loadVars"><code class="docutils literal notranslate"><span class="pre">loadVars()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.toLaTeXVariable"><code class="docutils literal notranslate"><span class="pre">toLaTeXVariable()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.save_vars"><code class="docutils literal notranslate"><span class="pre">save_vars()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.load_vars"><code class="docutils literal notranslate"><span class="pre">load_vars()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.to_latex_variable"><code class="docutils literal notranslate"><span class="pre">to_latex_variable()</span></code></a></li>
 </ul>
 </li>
 </ul>

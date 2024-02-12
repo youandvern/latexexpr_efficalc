@@ -33,7 +33,7 @@ Predefined Operation instance creation
 ======================================
 Preferable way to create new Operation instances. For each supported operation type there exists corresponding "constructor". All such "constructors" return new Operation instance.
 
-.. autofunction:: SUM
+.. autofunction:: sum_elements
 .. autofunction:: ADD
 .. autofunction:: PLUS
 .. autofunction:: SUB
@@ -45,26 +45,26 @@ Preferable way to create new Operation instances. For each supported operation t
 .. autofunction:: NEG
 .. autofunction:: POS
 .. autofunction:: ABS
-.. autofunction:: MAX
-.. autofunction:: MIN
+.. autofunction:: maximum
+.. autofunction:: minimum
 .. autofunction:: POW
-.. autofunction:: SQR
-.. autofunction:: SQRT
-.. autofunction:: SIN
-.. autofunction:: COS
-.. autofunction:: TAN
-.. autofunction:: SINH
-.. autofunction:: COSH
-.. autofunction:: TANH
-.. autofunction:: EXP
-.. autofunction:: LOG
-.. autofunction:: LN
-.. autofunction:: LOG10
-.. autofunction:: RBRACKETS
+.. autofunction:: sqr
+.. autofunction:: sqrt
+.. autofunction:: sin
+.. autofunction:: cos
+.. autofunction:: tan
+.. autofunction:: sinh
+.. autofunction:: cosh
+.. autofunction:: tanh
+.. autofunction:: exp
+.. autofunction:: log
+.. autofunction:: ln
+.. autofunction:: log10
+.. autofunction:: r_brackets
 .. autofunction:: BRACKETS
-.. autofunction:: SBRACKETS
-.. autofunction:: CBRACKETS
-.. autofunction:: ABRACKETS
+.. autofunction:: s_brackets
+.. autofunction:: c_brackets
+.. autofunction:: a_brackets
 
 
 Predefined Variable instances
@@ -82,9 +82,9 @@ Other module members
 Some other useful functions and other module members.
 
 .. autoexception:: LaTeXExpressionError
-.. autofunction:: saveVars
-.. autofunction:: loadVars
-.. autofunction:: toLaTeXVariable
+.. autofunction:: save_vars
+.. autofunction:: load_vars
+.. autofunction:: to_latex_variable
 
 
 Sympy extension

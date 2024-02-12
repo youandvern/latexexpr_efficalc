@@ -19,7 +19,7 @@ print('\n\nsimplify')
 e1 = latexexpr_efficalc.Expression('e1', v1 + v1 + v2 + v3 + v2 + v3 - v4)
 printExpr(e1, lsympy.simplify(e1))
 printExpr(lsympy.simplify(e1))
-e2 = latexexpr_efficalc.Expression('e2', latexexpr_efficalc.SIN(x) ** 2 + latexexpr_efficalc.COS(x) ** 2)
+e2 = latexexpr_efficalc.Expression('e2', latexexpr_efficalc.sin(x) ** 2 + latexexpr_efficalc.cos(x) ** 2)
 printExpr(e2, lsympy.simplify(e2))
 e3 = latexexpr_efficalc.Expression('e3', (x ** 3 + x ** 2 - x - 1) / (x ** 2 + 2 * x + 1))
 printExpr(e3, lsympy.simplify(e3))
@@ -52,11 +52,11 @@ printExpr(e1, lsympy.cancel(e1))
 e2 = latexexpr_efficalc.Expression('e2', 1 / x + (3 * x / 2 - 2) / (x - 4))
 printExpr(e2, lsympy.cancel(e2))
 e3 = latexexpr_efficalc.Expression('e3', (x * y ** 2 - 2 * x * y * z + x * z ** 2 + y ** 2 - 2 * y * z + z ** 2) / (
-            x ** 2 - 1))
+        x ** 2 - 1))
 printExpr(e3, lsympy.cancel(e3))
 
 # apart
 print('\n\napart')
 e1 = latexexpr_efficalc.Expression('e1', (4 * x ** 3 + 21 * x ** 2 + 10 * x + 12) / (
-            x ** 4 + 5 * x ** 3 + 5 * x ** 2 + 4 * x))
+        x ** 4 + 5 * x ** 3 + 5 * x ** 2 + 4 * x))
 printExpr(e1, lsympy.apart(e1))

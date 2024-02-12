@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Predefined Variable instances" href="predefined_variables.html" /><link rel="prev" title="Classes" href="classes.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Predefined Constants" href="predefined_variables.html" /><link rel="prev" title="Classes" href="classes.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
         <title>Predefined Operation instance creation - LaTeX Expression for Efficalc 0.5 documentation</title>
@@ -157,7 +157,7 @@
   <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="classes.html">Classes</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Predefined Operation instance creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="predefined_variables.html">Predefined Variable instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predefined_variables.html">Predefined Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="other_members.html">Other module members</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sympy.html">Sympy extension</a></li>
 </ul>
@@ -198,8 +198,8 @@
 <span id="predefinedoperations"></span><h1>Predefined Operation instance creation<a class="headerlink" href="#predefined-operation-instance-creation" title="Link to this heading">#</a></h1>
 <p>Preferable way to create new Operation instances. For each supported operation type there exists corresponding “constructor”. All such “constructors” return new Operation instance.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.SUM">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">SUM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.SUM" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.sum_elements">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">sum_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sum_elements" title="Link to this definition">#</a></dt>
 <dd><p>Returns addition Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -209,20 +209,25 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.ADD">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">ADD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.ADD" title="Link to this definition">#</a></dt>
-<dd><p>Alias for <a class="reference internal" href="#latexexpr_efficalc.SUM" title="latexexpr_efficalc.SUM"><code class="xref py py-func docutils literal notranslate"><span class="pre">SUM()</span></code></a></p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.add">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.add" title="Link to this definition">#</a></dt>
+<dd><p>Returns addition Operation instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>(</em><em>s</em><em>)</em><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><em>Expression</em></a><em>(</em><em>s</em><em>)</em><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><em>Operation</em></a><em>(</em><em>s</em><em>)</em>) – 2 or more objects for summation ( arg0 + arg1 + … + argLast)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.PLUS">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">PLUS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.PLUS" title="Link to this definition">#</a></dt>
-<dd><p>Alias for <a class="reference internal" href="#latexexpr_efficalc.SUM" title="latexexpr_efficalc.SUM"><code class="xref py py-func docutils literal notranslate"><span class="pre">SUM()</span></code></a></p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.plus">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.plus" title="Link to this definition">#</a></dt>
+<dd><p>Alias for <a class="reference internal" href="#latexexpr_efficalc.sum_elements" title="latexexpr_efficalc.sum_elements"><code class="xref py py-func docutils literal notranslate"><span class="pre">sum_elements()</span></code></a></p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.SUB">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">SUB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.SUB" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.sub">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sub" title="Link to this definition">#</a></dt>
 <dd><p>Returns subtraction Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -232,14 +237,14 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.MINUS">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">MINUS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.MINUS" title="Link to this definition">#</a></dt>
-<dd><p>Alias for <a class="reference internal" href="#latexexpr_efficalc.SUB" title="latexexpr_efficalc.SUB"><code class="xref py py-func docutils literal notranslate"><span class="pre">SUB()</span></code></a></p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.minus">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">minus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.minus" title="Link to this definition">#</a></dt>
+<dd><p>Alias for <a class="reference internal" href="#latexexpr_efficalc.sub" title="latexexpr_efficalc.sub"><code class="xref py py-func docutils literal notranslate"><span class="pre">sub()</span></code></a></p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.MUL">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">MUL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.MUL" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.mul">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">mul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.mul" title="Link to this definition">#</a></dt>
 <dd><p>Returns multiplication Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -249,14 +254,14 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.TIMES">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">TIMES</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.TIMES" title="Link to this definition">#</a></dt>
-<dd><p>Alias for <a class="reference internal" href="#latexexpr_efficalc.MUL" title="latexexpr_efficalc.MUL"><code class="xref py py-func docutils literal notranslate"><span class="pre">MUL()</span></code></a></p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.times">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.times" title="Link to this definition">#</a></dt>
+<dd><p>Alias for <a class="reference internal" href="#latexexpr_efficalc.mul" title="latexexpr_efficalc.mul"><code class="xref py py-func docutils literal notranslate"><span class="pre">mul()</span></code></a></p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.DIV">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">DIV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.DIV" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.div">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">div</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.div" title="Link to this definition">#</a></dt>
 <dd><p>Returns division Operation instance (in LaTeX marked by \frac{…}{…})</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -266,8 +271,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.DIV2">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">DIV2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.DIV2" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.div2">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">div2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.div2" title="Link to this definition">#</a></dt>
 <dd><p>Returns division Operation instance (in LaTeX marked by …/…</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -277,8 +282,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.NEG">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">NEG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.NEG" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.neg">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">neg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.neg" title="Link to this definition">#</a></dt>
 <dd><p>Returns negation Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -288,8 +293,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.POS">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">POS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.POS" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.pos">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.pos" title="Link to this definition">#</a></dt>
 <dd><p>Returns the “positivition” (which does nothing actually) Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -299,8 +304,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.ABS">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">ABS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.ABS" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.absolute">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">absolute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.absolute" title="Link to this definition">#</a></dt>
 <dd><p>Returns absolute value Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -310,8 +315,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.MAX">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">MAX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.MAX" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.maximum">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">maximum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.maximum" title="Link to this definition">#</a></dt>
 <dd><p>Returns max Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -321,8 +326,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.MIN">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">MIN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.MIN" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.minimum">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">minimum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.minimum" title="Link to this definition">#</a></dt>
 <dd><p>Returns min Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -332,8 +337,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.POW">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">POW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.POW" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.power">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.power" title="Link to this definition">#</a></dt>
 <dd><p>Returns power Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -343,8 +348,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.SQR">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">SQR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.SQR" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.sqr">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">sqr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sqr" title="Link to this definition">#</a></dt>
 <dd><p>Returns square Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -354,8 +359,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.SQRT">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">SQRT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.SQRT" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.sqrt">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">sqrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sqrt" title="Link to this definition">#</a></dt>
 <dd><p>Returns square root Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -365,8 +370,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.SIN">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">SIN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.SIN" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.sin">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sin" title="Link to this definition">#</a></dt>
 <dd><p>Returns sinus Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -376,8 +381,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.COS">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">COS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.COS" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.cos">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.cos" title="Link to this definition">#</a></dt>
 <dd><p>Returns cosinus Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -387,8 +392,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.TAN">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">TAN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.TAN" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.tan">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.tan" title="Link to this definition">#</a></dt>
 <dd><p>Returns tangent Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -398,8 +403,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.SINH">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">SINH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.SINH" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.sinh">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">sinh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.sinh" title="Link to this definition">#</a></dt>
 <dd><p>Returns hyperbolic sinus Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -409,8 +414,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.COSH">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">COSH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.COSH" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.cosh">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">cosh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.cosh" title="Link to this definition">#</a></dt>
 <dd><p>Returns hyperbolic cosinus Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -420,8 +425,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.TANH">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">TANH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.TANH" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.tanh">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">tanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.tanh" title="Link to this definition">#</a></dt>
 <dd><p>Returns hyperbolic tangent Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -431,8 +436,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.EXP">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">EXP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.EXP" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.exp">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.exp" title="Link to this definition">#</a></dt>
 <dd><p>Returns exp Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -442,8 +447,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.LOG">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">LOG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.LOG" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.log">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.log" title="Link to this definition">#</a></dt>
 <dd><p>Returns logarithm Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -453,8 +458,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.LN">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">LN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.LN" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.ln">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">ln</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.ln" title="Link to this definition">#</a></dt>
 <dd><p>Returns natural logarithm Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -464,8 +469,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.LOG10">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">LOG10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.LOG10" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.log10">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">log10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.log10" title="Link to this definition">#</a></dt>
 <dd><p>Returns decadic logarithm Operation instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -475,9 +480,9 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.RBRACKETS">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">RBRACKETS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.RBRACKETS" title="Link to this definition">#</a></dt>
-<dd><p>Returns round brackets Operation instance (wrapes passed argument to round brackets)</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.r_brackets">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">r_brackets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.r_brackets" title="Link to this definition">#</a></dt>
+<dd><p>Returns round brackets Operation instance (wraps passed argument to round brackets)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>args</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><em>Expression</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><em>Operation</em></a>) – 1 objects for round brackets ( (arg) )</p>
@@ -486,15 +491,15 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.BRACKETS">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">BRACKETS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.BRACKETS" title="Link to this definition">#</a></dt>
-<dd><p>Alias for <a class="reference internal" href="#latexexpr_efficalc.RBRACKETS" title="latexexpr_efficalc.RBRACKETS"><code class="xref py py-func docutils literal notranslate"><span class="pre">RBRACKETS()</span></code></a></p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.brackets">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">brackets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.brackets" title="Link to this definition">#</a></dt>
+<dd><p>Alias for <a class="reference internal" href="#latexexpr_efficalc.r_brackets" title="latexexpr_efficalc.r_brackets"><code class="xref py py-func docutils literal notranslate"><span class="pre">r_brackets()</span></code></a></p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.SBRACKETS">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">SBRACKETS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.SBRACKETS" title="Link to this definition">#</a></dt>
-<dd><p>Returns square brackets Operation instance (wrapes passed argument to square brackets)</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.s_brackets">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">s_brackets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.s_brackets" title="Link to this definition">#</a></dt>
+<dd><p>Returns square brackets Operation instance (wraps passed argument to square brackets)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>args</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><em>Expression</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><em>Operation</em></a>) – 1 objects for square brackets ( [arg] )</p>
@@ -503,9 +508,9 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.CBRACKETS">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">CBRACKETS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.CBRACKETS" title="Link to this definition">#</a></dt>
-<dd><p>Returns curly brackets Operation instance (wrapes passed argument to curly brackets)</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.c_brackets">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">c_brackets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.c_brackets" title="Link to this definition">#</a></dt>
+<dd><p>Returns curly brackets Operation instance (wraps passed argument to curly brackets)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>args</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><em>Expression</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><em>Operation</em></a>) – 1 objects for curly brackets ( {arg} )</p>
@@ -514,9 +519,9 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="latexexpr_efficalc.ABRACKETS">
-<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">ABRACKETS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.ABRACKETS" title="Link to this definition">#</a></dt>
-<dd><p>Returns angle brackets Operation instance (wrapes passed argument to angle brackets)</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.a_brackets">
+<span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">a_brackets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.a_brackets" title="Link to this definition">#</a></dt>
+<dd><p>Returns angle brackets Operation instance (wraps passed argument to angle brackets)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>args</strong> (<a class="reference internal" href="classes.html#latexexpr_efficalc.Variable" title="latexexpr_efficalc.Variable"><em>Variable</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><em>Expression</em></a><em>|</em><a class="reference internal" href="classes.html#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><em>Operation</em></a>) – 1 objects for angle brackets ( ⟨arg⟩ )</p>
@@ -536,7 +541,7 @@
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Predefined Variable instances</div>
+                <div class="title">Predefined Constants</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -582,38 +587,38 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Predefined Operation instance creation</a><ul>
-<li><a class="reference internal" href="#latexexpr_efficalc.SUM"><code class="docutils literal notranslate"><span class="pre">SUM()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.ADD"><code class="docutils literal notranslate"><span class="pre">ADD()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.PLUS"><code class="docutils literal notranslate"><span class="pre">PLUS()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.SUB"><code class="docutils literal notranslate"><span class="pre">SUB()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.MINUS"><code class="docutils literal notranslate"><span class="pre">MINUS()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.MUL"><code class="docutils literal notranslate"><span class="pre">MUL()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.TIMES"><code class="docutils literal notranslate"><span class="pre">TIMES()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.DIV"><code class="docutils literal notranslate"><span class="pre">DIV()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.DIV2"><code class="docutils literal notranslate"><span class="pre">DIV2()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.NEG"><code class="docutils literal notranslate"><span class="pre">NEG()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.POS"><code class="docutils literal notranslate"><span class="pre">POS()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.ABS"><code class="docutils literal notranslate"><span class="pre">ABS()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.MAX"><code class="docutils literal notranslate"><span class="pre">MAX()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.MIN"><code class="docutils literal notranslate"><span class="pre">MIN()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.POW"><code class="docutils literal notranslate"><span class="pre">POW()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.SQR"><code class="docutils literal notranslate"><span class="pre">SQR()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.SQRT"><code class="docutils literal notranslate"><span class="pre">SQRT()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.SIN"><code class="docutils literal notranslate"><span class="pre">SIN()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.COS"><code class="docutils literal notranslate"><span class="pre">COS()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.TAN"><code class="docutils literal notranslate"><span class="pre">TAN()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.SINH"><code class="docutils literal notranslate"><span class="pre">SINH()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.COSH"><code class="docutils literal notranslate"><span class="pre">COSH()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.TANH"><code class="docutils literal notranslate"><span class="pre">TANH()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.EXP"><code class="docutils literal notranslate"><span class="pre">EXP()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.LOG"><code class="docutils literal notranslate"><span class="pre">LOG()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.LN"><code class="docutils literal notranslate"><span class="pre">LN()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.LOG10"><code class="docutils literal notranslate"><span class="pre">LOG10()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.RBRACKETS"><code class="docutils literal notranslate"><span class="pre">RBRACKETS()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.BRACKETS"><code class="docutils literal notranslate"><span class="pre">BRACKETS()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.SBRACKETS"><code class="docutils literal notranslate"><span class="pre">SBRACKETS()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.CBRACKETS"><code class="docutils literal notranslate"><span class="pre">CBRACKETS()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.ABRACKETS"><code class="docutils literal notranslate"><span class="pre">ABRACKETS()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.sum_elements"><code class="docutils literal notranslate"><span class="pre">sum_elements()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.add"><code class="docutils literal notranslate"><span class="pre">add()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.plus"><code class="docutils literal notranslate"><span class="pre">plus()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.sub"><code class="docutils literal notranslate"><span class="pre">sub()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.minus"><code class="docutils literal notranslate"><span class="pre">minus()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.mul"><code class="docutils literal notranslate"><span class="pre">mul()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.times"><code class="docutils literal notranslate"><span class="pre">times()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.div"><code class="docutils literal notranslate"><span class="pre">div()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.div2"><code class="docutils literal notranslate"><span class="pre">div2()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.neg"><code class="docutils literal notranslate"><span class="pre">neg()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.pos"><code class="docutils literal notranslate"><span class="pre">pos()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.absolute"><code class="docutils literal notranslate"><span class="pre">absolute()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.maximum"><code class="docutils literal notranslate"><span class="pre">maximum()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.minimum"><code class="docutils literal notranslate"><span class="pre">minimum()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.power"><code class="docutils literal notranslate"><span class="pre">power()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.sqr"><code class="docutils literal notranslate"><span class="pre">sqr()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.sqrt"><code class="docutils literal notranslate"><span class="pre">sqrt()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.sin"><code class="docutils literal notranslate"><span class="pre">sin()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.cos"><code class="docutils literal notranslate"><span class="pre">cos()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.tan"><code class="docutils literal notranslate"><span class="pre">tan()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.sinh"><code class="docutils literal notranslate"><span class="pre">sinh()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.cosh"><code class="docutils literal notranslate"><span class="pre">cosh()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.tanh"><code class="docutils literal notranslate"><span class="pre">tanh()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.exp"><code class="docutils literal notranslate"><span class="pre">exp()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.log"><code class="docutils literal notranslate"><span class="pre">log()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.ln"><code class="docutils literal notranslate"><span class="pre">ln()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.log10"><code class="docutils literal notranslate"><span class="pre">log10()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.r_brackets"><code class="docutils literal notranslate"><span class="pre">r_brackets()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.brackets"><code class="docutils literal notranslate"><span class="pre">brackets()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.s_brackets"><code class="docutils literal notranslate"><span class="pre">s_brackets()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.c_brackets"><code class="docutils literal notranslate"><span class="pre">c_brackets()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.a_brackets"><code class="docutils literal notranslate"><span class="pre">a_brackets()</span></code></a></li>
 </ul>
 </li>
 </ul>

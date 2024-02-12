@@ -6,9 +6,9 @@ An overview of the \LaTeX\ Expression python module, presenting all its main fea
 All the variable names, values and units are merely illustrative.
 \begin{python}[example3.import.py]
 	v1 = latexexpr.Variable('a_2',1.23,'mm')
-	print(v1.toLaTeXVariableAll('newVarA'))
-	print(latexexpr.toLaTeXVariable('newVarB','\\texttt{VAR\_B}'))
-	latexexpr.saveVars(locals())
+	print(v1.to_latex_variable_all('newVarA'))
+	print(latexexpr.to_latex_variable('newVarB','\\texttt{VAR\_B}'))
+	latexexpr.save_vars(locals())
 \end{python}\input{\jobname.py.out}
 % for some reason, if you define new variale, you have to run
 % \input{\jobname.py.out} explicitelly after \end{python}.
@@ -17,13 +17,13 @@ Firstly, we can define a \LaTeX\ variables \texttt{\textbackslash newVarA}
 and \texttt{\textbackslash newVarB} using a python script.
 These variables ($\newVarA$ and \newVarB) can be used in any way.
 
-We also used \texttt{saveVars()} function.
+We also used \texttt{save_vars()} function.
 Since next python environment will always invoke a new python session,
-this and \texttt{loadVars()} function transfer defined variables from one session to the other:
+this and \texttt{load_vars()} function transfer defined variables from one session to the other:
 $$
-\begin{python}[example3.import.py]latexexpr.loadVars(locals()); print(v1) \end{python}
+\begin{python}[example3.import.py]latexexpr.load_vars(locals()); print(v1) \end{python}
 % 'inline' python environment (there should be no space between the first python
-% command, 'latexexpr.loadVars(locals());' in this case
+% command, 'latexexpr.load_vars(locals());' in this case
 $$
 
 The Variable as well as Expression class output can be formatted in the following way:
@@ -54,16 +54,16 @@ And one complex example (with manual multiline split):
 	v3 = Variable('M',63.56,'Nm')
 	v4 = Variable('g',9.81,'m2^{-2}')
 	v5 = Variable('g',9.81,'m2^{-2}')
-	o1 = (e1 + v3 - v4)/SQRT(ABS(v5))
-	e2 = Expression('q_2',SBRACKETS(o1+e1)*RBRACKETS(-v1+v2),'V')
+	o1 = (e1 + v3 - v4)/sqrt(ABS(v5))
+	e2 = Expression('q_2',s_brackets(o1+e1)*r_brackets(-v1+v2),'V')
 	print('$$')
 	print(v1); print('$$\n$$')
 	print(v2); print('$$\n$$')
 	print(e1); print('$$\n$$')
 	print(e2); print('$$\n$$')
-	print(r'%s = %s = \nonumber\\'%(e2.name,e2.operation.strSymbolic()))
+	print(r'%s = %s = \nonumber\\'%(e2.name,e2.operation.str_symbolic()))
 	print('$$\n$$')
-	print('= %s = %s'%(e2.operation.strSubstituted(),e2.strResultWithUnit()))
+	print('= %s = %s'%(e2.operation.str_substituted(),e2.str_result_with_unit()))
 	print('$$')
 \end{python}
 
@@ -86,11 +86,11 @@ with the possibility to assign the value later:
 	v1 = Variable('V_1',1.23,'km')
 	v2 = Variable('c_3',2.34,'km')
 	v3 = Variable('v_2',-3.45,'km')
-	for o in (ADD,MUL,MAX,MIN):
+	for o in (ADD,MUL,maximum,minimum):
 	   print('$$ %s $$'%Expression('a',o(v1,v2,v3),'m'))
-	for o in (SUB,DIV,DIV2,POW,ROOT,LOG):
+	for o in (SUB,DIV,DIV2,POW,root,log):
 	   print('$$ %s $$'%Expression('a',o(v1,v2),'m'))
-	for o in (NEG,POS,ABS,SQR,SQRT,SIN,COS,TAN,SINH,COSH,TANH,EXP,LN,LOG10,RBRACKETS,SBRACKETS,CBRACKETS,ABRACKETS):
+	for o in (NEG,POS,ABS,sqr,sqrt,sin,cos,tan,sinh,cosh,tanh,exp,ln,log10,r_brackets,s_brackets,c_brackets,a_brackets):
 	   print('$$ %s $$'%Expression('a',o(v1),'m'))
 \end{python}
 

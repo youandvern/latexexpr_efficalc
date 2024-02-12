@@ -1,6 +1,6 @@
 
-Predefined Variable instances
-=============================
+Predefined Constants
+====================
 Some predefined Variable instances which might be useful in constructing different expressions.
 
 .. autodata:: latexexpr_efficalc.ONE

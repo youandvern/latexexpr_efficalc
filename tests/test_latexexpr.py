@@ -33,4 +33,4 @@ def test_operation_with_rdiv_for_py3():
     e1 = Expression('E_{xample}', v1 + v2, 'm')
     o1 = (v1 - v2) / e1
     o2 = 2 / o1
-    assert o1.strResult() == r'\left(-0.268\right)'
+    assert o1.str_result() == r'\left(-0.268\right)'

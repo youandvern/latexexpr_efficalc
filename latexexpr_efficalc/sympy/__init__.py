@@ -23,6 +23,8 @@
 
 r"""latexexpr_efficalc.sympy is an extension for LaTeXExpression for symbolic operations (specifically :func:`.simplify`, :func:`.expand`, :func:`factor`, :func:`collect`, :func:`cancel`, :func:`apart` functions). It requires `sympy <http://www.sympy.org>`_ module. Most of the examples in this documentation is borrowed from `sympy documentation <http://docs.sympy.org/dev/tutorial/simplification.html>`_.
 
+Note the sympy module has not yet been fully implemented and tested. If you would like to improve the library, please reach out or raise a PR with your proposed improvements.
+
 If `sympy <http://www.sympy.org>`_ is present, it also defines aforementioned methods on :class:`Expression <latexexpr_efficalc.Expression>` and :class:`Operation <latexexpr_efficalc.Operation>` classes, so it is possible to use both :func:`.simplify` and o.simplify():
 
 .. code-block:: python
@@ -46,7 +48,7 @@ If `sympy <http://www.sympy.org>`_ is present, it also defines aforementioned me
 	>>> e1.simplify(substituteFloats=True)
 	>>> print e1
 	e1 = {-2.1} + {2} \cdot {v1} + {2} \cdot {v2}
-	>>> e2 = latexexpr_efficalc.Expression('e2',latexexpr_efficalc.SIN(x)**2+latexexpr_efficalc.COS(x)**2)
+	>>> e2 = latexexpr_efficalc.Expression('e2',latexexpr_efficalc.sin(x)**2+latexexpr_efficalc.cos(x)**2)
 	>>> print lsympy.simplify(e2)
 	e2 = 1 = 1 \ \mathrm{} = 1 \ \mathrm{}
 	>>> e3 = latexexpr_efficalc.Expression('e3', (x**3 + x**2 - x - 1) / (x**2 + 2*x + 1) )
@@ -64,21 +66,21 @@ except ImportError:
         "module 'sympy' is not available, therefore latexexpr_efficalc.sympy will not be available")
 
 
-def _operation2sympy(arg, varMap=None, substituteFloats=True):
+def _operation_to_sympy(arg, varMap=None, substituteFloats=True):
     sf = substituteFloats
     if varMap is None:
         varMap = {}
     if isinstance(arg, latexexpr_efficalc.Variable):
-        if not arg.isSymbolic() and arg.name == '%g' % arg.value:
+        if not arg.is_symbolic() and arg.name == '%g' % arg.value:
             if arg.value == int(arg.value):
                 return int(arg), varMap
             return float(arg), varMap
-        if not sf or arg.isSymbolic():
+        if not sf or arg.is_symbolic():
             varMap[arg.name] = arg
             return sympy.Symbol(arg.name), varMap
         return float(arg), varMap
     if isinstance(arg, latexexpr_efficalc.Expression):
-        return _operation2sympy(arg.operation, varMap, sf)
+        return _operation_to_sympy(arg.operation, varMap, sf)
     if not isinstance(arg, latexexpr_efficalc.Operation):
         raise TypeError("TODO " + str(type(arg)) + str(arg))
     t = arg.type
@@ -139,7 +141,7 @@ def _operation2sympy(arg, varMap=None, substituteFloats=True):
             sympyOp, args = sympy.log, (a, 10)  # TODO check formula
         elif t in (latexexpr_efficalc._NONE, latexexpr_efficalc._RBRACKETS, latexexpr_efficalc._SBRACKETS,
                    latexexpr_efficalc._CBRACKETS, latexexpr_efficalc._ABRACKETS, latexexpr_efficalc._POS):
-            return _operation2sympy(a, varMap, sf)
+            return _operation_to_sympy(a, varMap, sf)
         if args is None:
             args = (_o2s(a, varMap, sf),)
         return sympyOp(*args), varMap
@@ -147,7 +149,7 @@ def _operation2sympy(arg, varMap=None, substituteFloats=True):
 
 
 def _o2s(arg, varMap, substituteFloats):
-    return _operation2sympy(arg, varMap, substituteFloats)[0]
+    return _operation_to_sympy(arg, varMap, substituteFloats)[0]
 
 
 def _sympy2operation(sympyExpr, varMap):
@@ -168,8 +170,8 @@ def _sympy2operation(sympyExpr, varMap):
         if len(args) == 2 and isinstance(args[1], latexexpr_efficalc.Operation) and args[
             1].type == latexexpr_efficalc._NEG:
             args[1] = args[1].args[0]
-            return latexexpr_efficalc.SUB(*args)
-        return latexexpr_efficalc.ADD(*args)
+            return latexexpr_efficalc.sub(*args)
+        return latexexpr_efficalc.add(*args)
     if isinstance(sympyExpr, sympy.Mul):
         if len(args) == 2:
             if isinstance(args[0], latexexpr_efficalc.Variable) and args[0].name == '-1':
@@ -186,8 +188,8 @@ def _sympy2operation(sympyExpr, varMap):
             t = a.type if isinstance(a, latexexpr_efficalc.Operation) else a.operation.type if isinstance(
                 a, latexexpr_efficalc.Expression) else None
             if t in (latexexpr_efficalc._ADD, latexexpr_efficalc._SUB):  # TODO?
-                args[i] = latexexpr_efficalc.BRACKETS(a)
-        return latexexpr_efficalc.MUL(*args)
+                args[i] = latexexpr_efficalc.brackets(a)
+        return latexexpr_efficalc.mul(*args)
     if isinstance(sympyExpr, sympy.Pow):
         if len(args) == 2:
             n = args[1].name if isinstance(
@@ -203,18 +205,18 @@ def _sympy2operation(sympyExpr, varMap):
         t = a.type if isinstance(a, latexexpr_efficalc.Operation) else a.operation.type if isinstance(
             a, latexexpr_efficalc.Expression) else None
         if t in (latexexpr_efficalc._ADD, latexexpr_efficalc._SUB):  # TODO?
-            args[0] = latexexpr_efficalc.BRACKETS(a)
+            args[0] = latexexpr_efficalc.brackets(a)
         return args[0] ** args[1]
     for s, l in (
-            (sympy.Abs, latexexpr_efficalc.ABS),
-            (sympy.sin, latexexpr_efficalc.SIN),
-            (sympy.cos, latexexpr_efficalc.COS),
-            (sympy.tan, latexexpr_efficalc.TAN),
-            (sympy.sinh, latexexpr_efficalc.SINH),
-            (sympy.cosh, latexexpr_efficalc.COSH),
-            (sympy.tanh, latexexpr_efficalc.TANH),
-            (sympy.tanh, latexexpr_efficalc.TANH),
-            (sympy.log, latexexpr_efficalc.LN),
+            (sympy.Abs, latexexpr_efficalc.absolute),
+            (sympy.sin, latexexpr_efficalc.sin),
+            (sympy.cos, latexexpr_efficalc.cos),
+            (sympy.tan, latexexpr_efficalc.tan),
+            (sympy.sinh, latexexpr_efficalc.sinh),
+            (sympy.cosh, latexexpr_efficalc.cosh),
+            (sympy.tanh, latexexpr_efficalc.tanh),
+            (sympy.tanh, latexexpr_efficalc.tanh),
+            (sympy.log, latexexpr_efficalc.ln),
     ):
         if isinstance(sympyExpr, s):
             return l(args[0])
@@ -261,7 +263,7 @@ def simplify(arg, substituteFloats=False, **kw):
             >>> e1.simplify(substituteFloats=True)
             >>> print e1
             e1 = {-2.1} + {2} \cdot {v1} + {2} \cdot {v2}
-            >>> e2 = latexexpr_efficalc.Expression('e2',latexexpr_efficalc.SIN(x)**2+latexexpr_efficalc.COS(x)**2)
+            >>> e2 = latexexpr_efficalc.Expression('e2',latexexpr_efficalc.sin(x)**2+latexexpr_efficalc.cos(x)**2)
             >>> print lsympy.simplify(e2)
             e2 = 1 = 1 \ \mathrm{} = 1 \ \mathrm{}
             >>> e3 = latexexpr_efficalc.Expression('e3', (x**3 + x**2 - x - 1) / (x**2 + 2*x + 1) )
@@ -275,7 +277,7 @@ def simplify(arg, substituteFloats=False, **kw):
         ret.simplify(substituteFloats, **kw)
         return ret
     if isinstance(arg, latexexpr_efficalc.Operation):
-        s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
+        s, lVars = _operation_to_sympy(arg, substituteFloats=substituteFloats)
         s = sympy.simplify(s, **kw)
         return _sympy2operation(s, lVars)
     raise TypeError("Unsupported type (%s) for simplify" %
@@ -318,7 +320,7 @@ def expand(arg, substituteFloats=False, **kw):
         ret.expand(substituteFloats, **kw)
         return ret
     if isinstance(arg, latexexpr_efficalc.Operation):
-        s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
+        s, lVars = _operation_to_sympy(arg, substituteFloats=substituteFloats)
         s = sympy.expand(s, **kw)
         return _sympy2operation(s, lVars)
     raise TypeError("Unsupported type (%s) for expand" %
@@ -360,7 +362,7 @@ def factor(arg, substituteFloats=False, **kw):
         ret.factor(substituteFloats, **kw)
         return ret
     if isinstance(arg, latexexpr_efficalc.Operation):
-        s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
+        s, lVars = _operation_to_sympy(arg, substituteFloats=substituteFloats)
         s = sympy.factor(s, **kw)
         return _sympy2operation(s, lVars)
     raise TypeError("Unsupported type (%s) for factor" %
@@ -400,7 +402,7 @@ def collect(arg, syms, substituteFloats=False, **kw):
         ret.collect(syms, substituteFloats, **kw)
         return ret
     if isinstance(arg, latexexpr_efficalc.Operation):
-        s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
+        s, lVars = _operation_to_sympy(arg, substituteFloats=substituteFloats)
         if not (isinstance(syms, latexexpr_efficalc.Variable) or all(
                 isinstance(latexexpr_efficalc.Variable(s) for s in syms))):
             raise latexexpr_efficalc.LaTeXExpressionError("TODO")
@@ -450,7 +452,7 @@ def cancel(arg, substituteFloats=False, **kw):
         ret.cancel(substituteFloats, **kw)
         return ret
     if isinstance(arg, latexexpr_efficalc.Operation):
-        s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
+        s, lVars = _operation_to_sympy(arg, substituteFloats=substituteFloats)
         s = sympy.cancel(s, **kw)
         return _sympy2operation(s, lVars)
     raise TypeError("Unsupported type (%s) for cancel" %
@@ -487,7 +489,7 @@ def apart(arg, substituteFloats=False, **kw):
         ret.apart(substituteFloats, **kw)
         return ret
     if isinstance(arg, latexexpr_efficalc.Operation):
-        s, lVars = _operation2sympy(arg, substituteFloats=substituteFloats)
+        s, lVars = _operation_to_sympy(arg, substituteFloats=substituteFloats)
         s = sympy.apart(s, **kw)
         return _sympy2operation(s, lVars)
     raise TypeError("Unsupported type (%s) for apart" %
@@ -531,7 +533,7 @@ if __name__ == "__main__":
     print(e1)
     e1.simplify(substituteFloats=True)
     print(e1)
-    e2 = latexexpr_efficalc.Expression('e2', latexexpr_efficalc.SIN(x) ** 2 + latexexpr_efficalc.COS(x) ** 2)
+    e2 = latexexpr_efficalc.Expression('e2', latexexpr_efficalc.sin(x) ** 2 + latexexpr_efficalc.cos(x) ** 2)
     print(lsympy.simplify(e2))
     e3 = latexexpr_efficalc.Expression('e3', (x ** 3 + x ** 2 - x - 1) / (x ** 2 + 2 * x + 1))
     print(lsympy.simplify(e3))
@@ -551,7 +553,7 @@ if __name__ == "__main__":
     print(e1)
     e1.simplify(substituteFloats=True)
     print(e1)
-    e2 = latexexpr_efficalc.Expression('e2', latexexpr_efficalc.SIN(x) ** 2 + latexexpr_efficalc.COS(x) ** 2)
+    e2 = latexexpr_efficalc.Expression('e2', latexexpr_efficalc.sin(x) ** 2 + latexexpr_efficalc.cos(x) ** 2)
     print(lsympy.simplify(e2))
     e3 = latexexpr_efficalc.Expression('e3', (x ** 3 + x ** 2 - x - 1) / (x ** 2 + 2 * x + 1))
     print(lsympy.simplify(e3))

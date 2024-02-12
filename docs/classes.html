@@ -157,7 +157,7 @@
   <ul class="current">
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="predefined_operations.html">Predefined Operation instance creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="predefined_variables.html">Predefined Variable instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predefined_variables.html">Predefined Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="other_members.html">Other module members</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sympy.html">Sympy extension</a></li>
 </ul>
@@ -203,7 +203,7 @@
 <dt class="sig sig-object py" id="latexexpr_efficalc.Variable">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">latexexpr_efficalc.</span></span><span class="sig-name descname"><span class="pre">Variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%.4g'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unitFormat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\\mathrm{%s}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable" title="Link to this definition">#</a></dt>
 <dd><p>Class representing mathematical or physical variable, containing information about its symbolic name, value, phyical units and how to format it. It is a fundamental building block of <a class="reference internal" href="#latexexpr_efficalc.Operation" title="latexexpr_efficalc.Operation"><code class="xref py py-class docutils literal notranslate"><span class="pre">operations</span></code></a> and <a class="reference internal" href="#latexexpr_efficalc.Expression" title="latexexpr_efficalc.Expression"><code class="xref py py-class docutils literal notranslate"><span class="pre">expressions</span></code></a> instances.</p>
-<p>This class overloads str() method to return expression “name = value unit”, float() to return numeric result (throws exception if value is None) and abs() method.</p>
+<p>This class overloads str() method to return expression “name = value unit”, float() to return numeric result (throws exception if value is None) and absolute() method.</p>
 <p>This class also overloads +,-,*,/ (division, frac{…}{…} in LaTeX), // (divsion, …/… in LaTeX) and ** (power) operators. They can be used with Variable, Expression or Operation instances resulting into new Operation instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -280,8 +280,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.fromExpression">
-<span class="sig-name descname"><span class="pre">fromExpression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.fromExpression" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.from_expression">
+<span class="sig-name descname"><span class="pre">from_expression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.from_expression" title="Link to this definition">#</a></dt>
 <dd><p>Copy information from given Expression or Variable. Returns changed receiver</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -294,8 +294,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.isSymbolic">
-<span class="sig-name descname"><span class="pre">isSymbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.isSymbolic" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.is_symbolic">
+<span class="sig-name descname"><span class="pre">is_symbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.is_symbolic" title="Link to this definition">#</a></dt>
 <dd><p>Returns if receiver (or at least one of its sub-components) is purely symbolic variable without specific value</p>
 </dd></dl>
 
@@ -322,8 +322,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.strResult">
-<span class="sig-name descname"><span class="pre">strResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.strResult" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.str_result">
+<span class="sig-name descname"><span class="pre">str_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.str_result" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of the result of the receiver (its formatted result)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -337,15 +337,15 @@
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;a_</span><span class="si">{22}</span><span class="s1">&#39;</span><span class="p">,</span><span class="mf">3.45</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">strResult</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">str_result</span><span class="p">()</span>
 <span class="go">3.45</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.strResultWithUnit">
-<span class="sig-name descname"><span class="pre">strResultWithUnit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.strResultWithUnit" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.str_result_with_unit">
+<span class="sig-name descname"><span class="pre">str_result_with_unit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.str_result_with_unit" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of the result of the receiver (its formatted result) ending with its units</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -353,15 +353,15 @@
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;a_</span><span class="si">{22}</span><span class="s1">&#39;</span><span class="p">,</span><span class="mf">3.45</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">strResultWithUnit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">str_result_with_unit</span><span class="p">()</span>
 <span class="go">3.45 \ \mathrm{mm}</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.strSubstituted">
-<span class="sig-name descname"><span class="pre">strSubstituted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.strSubstituted" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.str_substituted">
+<span class="sig-name descname"><span class="pre">str_substituted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.str_substituted" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of numeric representation of receiver (its formatted value)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -369,15 +369,15 @@
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;a_</span><span class="si">{22}</span><span class="s1">&#39;</span><span class="p">,</span><span class="mf">3.45</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">strSubstituted</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">str_substituted</span><span class="p">()</span>
 <span class="go">3.45</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.strSymbolic">
-<span class="sig-name descname"><span class="pre">strSymbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.strSymbolic" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.str_symbolic">
+<span class="sig-name descname"><span class="pre">str_symbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.str_symbolic" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of symbolic representation of receiver (its name)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -385,15 +385,15 @@
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;a_</span><span class="si">{22}</span><span class="s1">&#39;</span><span class="p">,</span><span class="mf">3.45</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">strSymbolic</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">str_symbolic</span><span class="p">()</span>
 <span class="go">{a_{22}}</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.toLaTeXVariable">
-<span class="sig-name descname"><span class="pre">toLaTeXVariable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">what</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'float'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.toLaTeXVariable" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.to_latex_variable">
+<span class="sig-name descname"><span class="pre">to_latex_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">what</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'float'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.to_latex_variable" title="Link to this definition">#</a></dt>
 <dd><p>Returns latex expression converting receiver to LaTeX variable using def, newcommand, or renewcommand LaTeX command</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -405,40 +405,40 @@
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;a_</span><span class="si">{22}</span><span class="s1">&#39;</span><span class="p">,</span><span class="mf">3.45</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">toLaTeXVariable</span><span class="p">(</span><span class="s1">&#39;AA&#39;</span><span class="p">,</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">to_latex_variable</span><span class="p">(</span><span class="s1">&#39;AA&#39;</span><span class="p">,</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
 <span class="go">\def\AA{3.45}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">toLaTeXVariable</span><span class="p">(</span><span class="s1">&#39;AA&#39;</span><span class="p">,</span><span class="s1">&#39;str&#39;</span><span class="p">,</span><span class="s1">&#39;newcommand&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">to_latex_variable</span><span class="p">(</span><span class="s1">&#39;AA&#39;</span><span class="p">,</span><span class="s1">&#39;str&#39;</span><span class="p">,</span><span class="s1">&#39;newcommand&#39;</span><span class="p">)</span>
 <span class="go">\newcommand{\AA}{3.45}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">toLaTeXVariable</span><span class="p">(</span><span class="s1">&#39;AA&#39;</span><span class="p">,</span><span class="s1">&#39;valunit&#39;</span><span class="p">,</span><span class="s1">&#39;renewcommand&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">to_latex_variable</span><span class="p">(</span><span class="s1">&#39;AA&#39;</span><span class="p">,</span><span class="s1">&#39;valunit&#39;</span><span class="p">,</span><span class="s1">&#39;renewcommand&#39;</span><span class="p">)</span>
 <span class="go">\renewcommand{\AA}{3.45 \ \mathrm{mm}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">toLaTeXVariable</span><span class="p">(</span><span class="s1">&#39;AA&#39;</span><span class="p">,</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="s1">&#39;def&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">v1</span><span class="o">.</span><span class="n">to_latex_variable</span><span class="p">(</span><span class="s1">&#39;AA&#39;</span><span class="p">,</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="s1">&#39;def&#39;</span><span class="p">)</span>
 <span class="go">\def\AA{a_{22} = 3.45 \ \mathrm{mm}}</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.toLaTeXVariableAll">
-<span class="sig-name descname"><span class="pre">toLaTeXVariableAll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.toLaTeXVariableAll" title="Link to this definition">#</a></dt>
-<dd><p>Shotcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariable" title="latexexpr_efficalc.Variable.toLaTeXVariable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.toLaTeXVariable()</span></code></a> with what=’all’</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.to_latex_variable_all">
+<span class="sig-name descname"><span class="pre">to_latex_variable_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.to_latex_variable_all" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable" title="latexexpr_efficalc.Variable.to_latex_variable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.to_latex_variable()</span></code></a> with what=’all’</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.toLaTeXVariableFloat">
-<span class="sig-name descname"><span class="pre">toLaTeXVariableFloat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.toLaTeXVariableFloat" title="Link to this definition">#</a></dt>
-<dd><p>Shotcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariable" title="latexexpr_efficalc.Variable.toLaTeXVariable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.toLaTeXVariable()</span></code></a> with what=’float’</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.to_latex_variable_float">
+<span class="sig-name descname"><span class="pre">to_latex_variable_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.to_latex_variable_float" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable" title="latexexpr_efficalc.Variable.to_latex_variable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.to_latex_variable()</span></code></a> with what=’float’</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.toLaTeXVariableStr">
-<span class="sig-name descname"><span class="pre">toLaTeXVariableStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.toLaTeXVariableStr" title="Link to this definition">#</a></dt>
-<dd><p>Shotcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariable" title="latexexpr_efficalc.Variable.toLaTeXVariable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.toLaTeXVariable()</span></code></a> with what=’str’</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.to_latex_variable_str">
+<span class="sig-name descname"><span class="pre">to_latex_variable_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.to_latex_variable_str" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable" title="latexexpr_efficalc.Variable.to_latex_variable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.to_latex_variable()</span></code></a> with what=’str’</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.toLaTeXVariableValUnit">
-<span class="sig-name descname"><span class="pre">toLaTeXVariableValUnit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.toLaTeXVariableValUnit" title="Link to this definition">#</a></dt>
-<dd><p>Shotcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariable" title="latexexpr_efficalc.Variable.toLaTeXVariable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.toLaTeXVariable()</span></code></a> with what=’valunit’</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Variable.to_latex_variable_val_unit">
+<span class="sig-name descname"><span class="pre">to_latex_variable_val_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Variable.to_latex_variable_val_unit" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable" title="latexexpr_efficalc.Variable.to_latex_variable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.to_latex_variable()</span></code></a> with what=’valunit’</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -478,7 +478,7 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">o4</span>
 <span class="go">{a_{22}} + {F}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;E_2&#39;</span><span class="p">,(</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="p">)</span><span class="o">/</span><span class="n">v3</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">o2</span> <span class="o">=</span> <span class="n">MUL</span><span class="p">(</span><span class="n">RBRACKETS</span><span class="p">(</span><span class="n">e2</span><span class="o">+</span><span class="n">v4</span><span class="p">),</span><span class="n">v5</span><span class="p">,</span><span class="n">v6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o2</span> <span class="o">=</span> <span class="n">mul</span><span class="p">(</span><span class="n">r_brackets</span><span class="p">(</span><span class="n">e2</span><span class="o">+</span><span class="n">v4</span><span class="p">),</span><span class="n">v5</span><span class="p">,</span><span class="n">v6</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">o2</span>
 <span class="go">\left( {E_2} + {F} \right) \cdot {F} \cdot {F} = \left( 2.14906 + 2.5643 \right) \cdot 5.87693 \cdot \left( -6.543 \right)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v8</span><span class="o">.</span><span class="n">value</span><span class="o">=</span><span class="mf">2.34</span>
@@ -531,8 +531,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.isSymbolic">
-<span class="sig-name descname"><span class="pre">isSymbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.isSymbolic" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.is_symbolic">
+<span class="sig-name descname"><span class="pre">is_symbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.is_symbolic" title="Link to this definition">#</a></dt>
 <dd><p>Returns if receiver (or at least one of its sub-components) is purely symbolic variable without specific value</p>
 </dd></dl>
 
@@ -556,8 +556,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.strResult">
-<span class="sig-name descname"><span class="pre">strResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.strResult" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.str_result">
+<span class="sig-name descname"><span class="pre">str_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.str_result" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of the result of the receiver (its formatted result)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -574,21 +574,21 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">5.876934835</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v3</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">4.34</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">,</span><span class="n">exponent</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">o3</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="p">)</span><span class="o">/</span><span class="n">v3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">o3</span><span class="o">.</span><span class="n">strResult</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">o3</span><span class="o">.</span><span class="n">str_result</span><span class="p">()</span>
 <span class="go">2.14906</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.strResultWithUnit">
-<span class="sig-name descname"><span class="pre">strResultWithUnit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.strResultWithUnit" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.str_result_with_unit">
+<span class="sig-name descname"><span class="pre">str_result_with_unit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.str_result_with_unit" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of the result of the receiver (its formatted result) ending with its units</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.strSubstituted">
-<span class="sig-name descname"><span class="pre">strSubstituted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.strSubstituted" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.str_substituted">
+<span class="sig-name descname"><span class="pre">str_substituted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.str_substituted" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of substituted representation of receiver</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -599,15 +599,15 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">5.876934835</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v3</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">4.34</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">,</span><span class="n">exponent</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">o3</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="p">)</span><span class="o">/</span><span class="n">v3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">o3</span><span class="o">.</span><span class="n">strSubstituted</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">o3</span><span class="o">.</span><span class="n">str_substituted</span><span class="p">()</span>
 <span class="go">\frac{ 3.45 + 5.87693 }{ { 434 \cdot 10^{-2} } }</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.strSymbolic">
-<span class="sig-name descname"><span class="pre">strSymbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.strSymbolic" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.str_symbolic">
+<span class="sig-name descname"><span class="pre">str_symbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.str_symbolic" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of symbolic representation of receiver</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -618,15 +618,15 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">5.876934835</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v3</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">4.34</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">,</span><span class="n">exponent</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">o3</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="p">)</span><span class="o">/</span><span class="n">v3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">o3</span><span class="o">.</span><span class="n">strSymbolic</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">o3</span><span class="o">.</span><span class="n">str_symbolic</span><span class="p">()</span>
 <span class="go">\frac{ {a_{22}} + {F} }{ {F} }</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.toVariable">
-<span class="sig-name descname"><span class="pre">toVariable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.toVariable" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Operation.to_variable">
+<span class="sig-name descname"><span class="pre">to_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Operation.to_variable" title="Link to this definition">#</a></dt>
 <dd><p>Returns new Variable instance with attributes copied from receiver</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -677,8 +677,8 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v5</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">5.876934835</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v6</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="o">-</span><span class="mf">6.543</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v8</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">o1</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span> <span class="o">+</span> <span class="n">SQRT</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">v3</span> <span class="o">*</span> <span class="n">v4</span><span class="p">)</span> <span class="o">+</span> <span class="n">v5</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;E_1^i&#39;</span><span class="p">,</span><span class="n">SBRACKETS</span><span class="p">(</span><span class="n">o1</span><span class="p">)</span> <span class="o">-</span> <span class="n">SQR</span><span class="p">(</span><span class="n">v6</span><span class="p">),</span><span class="s1">&#39;kNm&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o1</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">v3</span> <span class="o">*</span> <span class="n">v4</span><span class="p">)</span> <span class="o">+</span> <span class="n">v5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;E_1^i&#39;</span><span class="p">,</span><span class="n">s_brackets</span><span class="p">(</span><span class="n">o1</span><span class="p">)</span> <span class="o">-</span> <span class="n">sqr</span><span class="p">(</span><span class="n">v6</span><span class="p">),</span><span class="s1">&#39;kNm&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e1</span>
 <span class="go">E_1^i = \left[ \frac{ {a_{22}} + \sqrt{ {F} } }{ {F} \cdot {F} } + {F} \right] - {F}^2 = \left[ \frac{ 3.45 + \sqrt{ 5.87693 } }{ { 434 \cdot 10^{-2} } \cdot 2.5643 } + 5.87693 \right] - \left( -6.543 \right)^2 = \left(-36.4061\right) \ \mathrm{kNm}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;E_2&#39;</span><span class="p">,(</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="p">)</span><span class="o">/</span><span class="n">v3</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
@@ -744,8 +744,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.isSymbolic">
-<span class="sig-name descname"><span class="pre">isSymbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.isSymbolic" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.is_symbolic">
+<span class="sig-name descname"><span class="pre">is_symbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.is_symbolic" title="Link to this definition">#</a></dt>
 <dd><p>Returns if receiver (or at least one of its sub-components) is purely symbolic variable without specific value</p>
 </dd></dl>
 
@@ -781,8 +781,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.strResult">
-<span class="sig-name descname"><span class="pre">strResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.strResult" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.str_result">
+<span class="sig-name descname"><span class="pre">str_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.str_result" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of the result of the receiver (its formatted result)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -799,15 +799,15 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">5.876934835</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v3</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">4.34</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">,</span><span class="n">exponent</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;E_2&#39;</span><span class="p">,(</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="p">)</span><span class="o">/</span><span class="n">v3</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">strResult</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">str_result</span><span class="p">()</span>
 <span class="go">2.14906</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.strResultWithUnit">
-<span class="sig-name descname"><span class="pre">strResultWithUnit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.strResultWithUnit" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.str_result_with_unit">
+<span class="sig-name descname"><span class="pre">str_result_with_unit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.str_result_with_unit" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of the result of the receiver (its formatted result) ending with its units</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -818,15 +818,15 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">5.876934835</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v3</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">4.34</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">,</span><span class="n">exponent</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;E_2&#39;</span><span class="p">,(</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="p">)</span><span class="o">/</span><span class="n">v3</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">strResultWithUnit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">str_result_with_unit</span><span class="p">()</span>
 <span class="go">2.14906 \ \mathrm{mm}</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.strSubstituted">
-<span class="sig-name descname"><span class="pre">strSubstituted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.strSubstituted" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.str_substituted">
+<span class="sig-name descname"><span class="pre">str_substituted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.str_substituted" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of numeric representation of receiver (its formatted result)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -837,15 +837,15 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">5.876934835</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v3</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">4.34</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">,</span><span class="n">exponent</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;E_2&#39;</span><span class="p">,(</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="p">)</span><span class="o">/</span><span class="n">v3</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">strSubstituted</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">str_substituted</span><span class="p">()</span>
 <span class="go">2.14906</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.strSymbolic">
-<span class="sig-name descname"><span class="pre">strSymbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.strSymbolic" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.str_symbolic">
+<span class="sig-name descname"><span class="pre">str_symbolic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.str_symbolic" title="Link to this definition">#</a></dt>
 <dd><p>Returns string of symbolic representation of receiver (its name)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -856,15 +856,15 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">5.876934835</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v3</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">4.34</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">,</span><span class="n">exponent</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;E_2&#39;</span><span class="p">,(</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="p">)</span><span class="o">/</span><span class="n">v3</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">strSymbolic</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">str_symbolic</span><span class="p">()</span>
 <span class="go">{E_2}</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.toLaTeXVariable">
-<span class="sig-name descname"><span class="pre">toLaTeXVariable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">what</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'float'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.toLaTeXVariable" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.to_latex_variable">
+<span class="sig-name descname"><span class="pre">to_latex_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">what</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'float'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.to_latex_variable" title="Link to this definition">#</a></dt>
 <dd><p>Returns latex expression converting receiver to LaTeX variable using def, newcommand, or renewcommand LaTeX command</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -879,61 +879,61 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">5.876934835</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v3</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="mf">4.34</span><span class="p">,</span><span class="s1">&#39;kN&#39;</span><span class="p">,</span><span class="n">exponent</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;E_2&#39;</span><span class="p">,(</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="p">)</span><span class="o">/</span><span class="n">v3</span><span class="p">,</span><span class="s1">&#39;mm&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">toLaTeXVariable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">to_latex_variable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
 <span class="go">\def\ETWO{2.14906332604}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">toLaTeXVariable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;str&#39;</span><span class="p">,</span><span class="s1">&#39;newcommand&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">to_latex_variable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;str&#39;</span><span class="p">,</span><span class="s1">&#39;newcommand&#39;</span><span class="p">)</span>
 <span class="go">\newcommand{\ETWO}{2.14906}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">toLaTeXVariable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;valunit&#39;</span><span class="p">,</span><span class="s1">&#39;renewcommand&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">to_latex_variable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;valunit&#39;</span><span class="p">,</span><span class="s1">&#39;renewcommand&#39;</span><span class="p">)</span>
 <span class="go">\renewcommand{\ETWO}{2.14906 \ \mathrm{mm}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">toLaTeXVariable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;symb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">to_latex_variable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;symb&#39;</span><span class="p">)</span>
 <span class="go">\def\ETWO{{E_2}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">toLaTeXVariable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;subst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">to_latex_variable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;subst&#39;</span><span class="p">)</span>
 <span class="go">\def\ETWO{2.14906}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">toLaTeXVariable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="s1">&#39;def&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">e2</span><span class="o">.</span><span class="n">to_latex_variable</span><span class="p">(</span><span class="s1">&#39;ETWO&#39;</span><span class="p">,</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="s1">&#39;def&#39;</span><span class="p">)</span>
 <span class="go">\def\ETWO{E_2 = \frac{ {a_{22}} + {F} }{ {F} } = \frac{ 3.45 + 5.87693 }{ { 434 \cdot 10^{-2} } } = 2.14906 \ \mathrm{mm}}</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.toLaTeXVariableAll">
-<span class="sig-name descname"><span class="pre">toLaTeXVariableAll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.toLaTeXVariableAll" title="Link to this definition">#</a></dt>
-<dd><p>Shotcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariable" title="latexexpr_efficalc.Variable.toLaTeXVariable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.toLaTeXVariable()</span></code></a> with what=’all’</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.to_latex_variable_all">
+<span class="sig-name descname"><span class="pre">to_latex_variable_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.to_latex_variable_all" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable" title="latexexpr_efficalc.Variable.to_latex_variable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.to_latex_variable()</span></code></a> with what=’all’</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.toLaTeXVariableFloat">
-<span class="sig-name descname"><span class="pre">toLaTeXVariableFloat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.toLaTeXVariableFloat" title="Link to this definition">#</a></dt>
-<dd><p>Shotcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariable" title="latexexpr_efficalc.Variable.toLaTeXVariable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.toLaTeXVariable()</span></code></a> with what=’float’</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.to_latex_variable_float">
+<span class="sig-name descname"><span class="pre">to_latex_variable_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.to_latex_variable_float" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable" title="latexexpr_efficalc.Variable.to_latex_variable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.to_latex_variable()</span></code></a> with what=’float’</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.toLaTeXVariableStr">
-<span class="sig-name descname"><span class="pre">toLaTeXVariableStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.toLaTeXVariableStr" title="Link to this definition">#</a></dt>
-<dd><p>Shotcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariable" title="latexexpr_efficalc.Variable.toLaTeXVariable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.toLaTeXVariable()</span></code></a> with what=’str’</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.to_latex_variable_str">
+<span class="sig-name descname"><span class="pre">to_latex_variable_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.to_latex_variable_str" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable" title="latexexpr_efficalc.Variable.to_latex_variable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.to_latex_variable()</span></code></a> with what=’str’</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.toLaTeXVariableSubst">
-<span class="sig-name descname"><span class="pre">toLaTeXVariableSubst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.toLaTeXVariableSubst" title="Link to this definition">#</a></dt>
-<dd><p>Shotcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariable" title="latexexpr_efficalc.Variable.toLaTeXVariable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.toLaTeXVariable()</span></code></a> with what=’subst’</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.to_latex_variable_subst">
+<span class="sig-name descname"><span class="pre">to_latex_variable_subst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.to_latex_variable_subst" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable" title="latexexpr_efficalc.Variable.to_latex_variable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.to_latex_variable()</span></code></a> with what=’subst’</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.toLaTeXVariableSymb">
-<span class="sig-name descname"><span class="pre">toLaTeXVariableSymb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.toLaTeXVariableSymb" title="Link to this definition">#</a></dt>
-<dd><p>Shotcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariable" title="latexexpr_efficalc.Variable.toLaTeXVariable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.toLaTeXVariable()</span></code></a> with what=’symb’</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.to_latex_variable_symb">
+<span class="sig-name descname"><span class="pre">to_latex_variable_symb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.to_latex_variable_symb" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable" title="latexexpr_efficalc.Variable.to_latex_variable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.to_latex_variable()</span></code></a> with what=’symb’</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.toLaTeXVariableValUnit">
-<span class="sig-name descname"><span class="pre">toLaTeXVariableValUnit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.toLaTeXVariableValUnit" title="Link to this definition">#</a></dt>
-<dd><p>Shotcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariable" title="latexexpr_efficalc.Variable.toLaTeXVariable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.toLaTeXVariable()</span></code></a> with what=’valunit’</p>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.to_latex_variable_val_unit">
+<span class="sig-name descname"><span class="pre">to_latex_variable_val_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'def'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.to_latex_variable_val_unit" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for <a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable" title="latexexpr_efficalc.Variable.to_latex_variable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Variable.to_latex_variable()</span></code></a> with what=’valunit’</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.toVariable">
-<span class="sig-name descname"><span class="pre">toVariable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.toVariable" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="latexexpr_efficalc.Expression.to_variable">
+<span class="sig-name descname"><span class="pre">to_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#latexexpr_efficalc.Expression.to_variable" title="Link to this definition">#</a></dt>
 <dd><p>Returns new Variable instance with attributes copied from receiver</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1018,19 +1018,19 @@
 <li><a class="reference internal" href="#latexexpr_efficalc.Variable.__float__"><code class="docutils literal notranslate"><span class="pre">Variable.__float__()</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Variable.exponent"><code class="docutils literal notranslate"><span class="pre">Variable.exponent</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Variable.format"><code class="docutils literal notranslate"><span class="pre">Variable.format</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Variable.fromExpression"><code class="docutils literal notranslate"><span class="pre">Variable.fromExpression()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Variable.isSymbolic"><code class="docutils literal notranslate"><span class="pre">Variable.isSymbolic()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Variable.from_expression"><code class="docutils literal notranslate"><span class="pre">Variable.from_expression()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Variable.is_symbolic"><code class="docutils literal notranslate"><span class="pre">Variable.is_symbolic()</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Variable.name"><code class="docutils literal notranslate"><span class="pre">Variable.name</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Variable.result"><code class="docutils literal notranslate"><span class="pre">Variable.result()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Variable.strResult"><code class="docutils literal notranslate"><span class="pre">Variable.strResult()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Variable.strResultWithUnit"><code class="docutils literal notranslate"><span class="pre">Variable.strResultWithUnit()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Variable.strSubstituted"><code class="docutils literal notranslate"><span class="pre">Variable.strSubstituted()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Variable.strSymbolic"><code class="docutils literal notranslate"><span class="pre">Variable.strSymbolic()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariable"><code class="docutils literal notranslate"><span class="pre">Variable.toLaTeXVariable()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariableAll"><code class="docutils literal notranslate"><span class="pre">Variable.toLaTeXVariableAll()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariableFloat"><code class="docutils literal notranslate"><span class="pre">Variable.toLaTeXVariableFloat()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariableStr"><code class="docutils literal notranslate"><span class="pre">Variable.toLaTeXVariableStr()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Variable.toLaTeXVariableValUnit"><code class="docutils literal notranslate"><span class="pre">Variable.toLaTeXVariableValUnit()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Variable.str_result"><code class="docutils literal notranslate"><span class="pre">Variable.str_result()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Variable.str_result_with_unit"><code class="docutils literal notranslate"><span class="pre">Variable.str_result_with_unit()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Variable.str_substituted"><code class="docutils literal notranslate"><span class="pre">Variable.str_substituted()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Variable.str_symbolic"><code class="docutils literal notranslate"><span class="pre">Variable.str_symbolic()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable"><code class="docutils literal notranslate"><span class="pre">Variable.to_latex_variable()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable_all"><code class="docutils literal notranslate"><span class="pre">Variable.to_latex_variable_all()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable_float"><code class="docutils literal notranslate"><span class="pre">Variable.to_latex_variable_float()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable_str"><code class="docutils literal notranslate"><span class="pre">Variable.to_latex_variable_str()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Variable.to_latex_variable_val_unit"><code class="docutils literal notranslate"><span class="pre">Variable.to_latex_variable_val_unit()</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Variable.unit"><code class="docutils literal notranslate"><span class="pre">Variable.unit</span></code></a></li>
 </ul>
 </li>
@@ -1041,13 +1041,13 @@
 <li><a class="reference internal" href="#latexexpr_efficalc.Operation.__str__"><code class="docutils literal notranslate"><span class="pre">Operation.__str__()</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Operation.__float__"><code class="docutils literal notranslate"><span class="pre">Operation.__float__()</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Operation.args"><code class="docutils literal notranslate"><span class="pre">Operation.args</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Operation.isSymbolic"><code class="docutils literal notranslate"><span class="pre">Operation.isSymbolic()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Operation.is_symbolic"><code class="docutils literal notranslate"><span class="pre">Operation.is_symbolic()</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Operation.result"><code class="docutils literal notranslate"><span class="pre">Operation.result()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Operation.strResult"><code class="docutils literal notranslate"><span class="pre">Operation.strResult()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Operation.strResultWithUnit"><code class="docutils literal notranslate"><span class="pre">Operation.strResultWithUnit()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Operation.strSubstituted"><code class="docutils literal notranslate"><span class="pre">Operation.strSubstituted()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Operation.strSymbolic"><code class="docutils literal notranslate"><span class="pre">Operation.strSymbolic()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Operation.toVariable"><code class="docutils literal notranslate"><span class="pre">Operation.toVariable()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Operation.str_result"><code class="docutils literal notranslate"><span class="pre">Operation.str_result()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Operation.str_result_with_unit"><code class="docutils literal notranslate"><span class="pre">Operation.str_result_with_unit()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Operation.str_substituted"><code class="docutils literal notranslate"><span class="pre">Operation.str_substituted()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Operation.str_symbolic"><code class="docutils literal notranslate"><span class="pre">Operation.str_symbolic()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Operation.to_variable"><code class="docutils literal notranslate"><span class="pre">Operation.to_variable()</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Operation.type"><code class="docutils literal notranslate"><span class="pre">Operation.type</span></code></a></li>
 </ul>
 </li>
@@ -1059,22 +1059,22 @@
 <li><a class="reference internal" href="#latexexpr_efficalc.Expression.__float__"><code class="docutils literal notranslate"><span class="pre">Expression.__float__()</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Expression.exponent"><code class="docutils literal notranslate"><span class="pre">Expression.exponent</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Expression.format"><code class="docutils literal notranslate"><span class="pre">Expression.format</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.isSymbolic"><code class="docutils literal notranslate"><span class="pre">Expression.isSymbolic()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.is_symbolic"><code class="docutils literal notranslate"><span class="pre">Expression.is_symbolic()</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Expression.name"><code class="docutils literal notranslate"><span class="pre">Expression.name</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Expression.operation"><code class="docutils literal notranslate"><span class="pre">Expression.operation</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Expression.result"><code class="docutils literal notranslate"><span class="pre">Expression.result()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.strResult"><code class="docutils literal notranslate"><span class="pre">Expression.strResult()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.strResultWithUnit"><code class="docutils literal notranslate"><span class="pre">Expression.strResultWithUnit()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.strSubstituted"><code class="docutils literal notranslate"><span class="pre">Expression.strSubstituted()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.strSymbolic"><code class="docutils literal notranslate"><span class="pre">Expression.strSymbolic()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.toLaTeXVariable"><code class="docutils literal notranslate"><span class="pre">Expression.toLaTeXVariable()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.toLaTeXVariableAll"><code class="docutils literal notranslate"><span class="pre">Expression.toLaTeXVariableAll()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.toLaTeXVariableFloat"><code class="docutils literal notranslate"><span class="pre">Expression.toLaTeXVariableFloat()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.toLaTeXVariableStr"><code class="docutils literal notranslate"><span class="pre">Expression.toLaTeXVariableStr()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.toLaTeXVariableSubst"><code class="docutils literal notranslate"><span class="pre">Expression.toLaTeXVariableSubst()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.toLaTeXVariableSymb"><code class="docutils literal notranslate"><span class="pre">Expression.toLaTeXVariableSymb()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.toLaTeXVariableValUnit"><code class="docutils literal notranslate"><span class="pre">Expression.toLaTeXVariableValUnit()</span></code></a></li>
-<li><a class="reference internal" href="#latexexpr_efficalc.Expression.toVariable"><code class="docutils literal notranslate"><span class="pre">Expression.toVariable()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.str_result"><code class="docutils literal notranslate"><span class="pre">Expression.str_result()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.str_result_with_unit"><code class="docutils literal notranslate"><span class="pre">Expression.str_result_with_unit()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.str_substituted"><code class="docutils literal notranslate"><span class="pre">Expression.str_substituted()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.str_symbolic"><code class="docutils literal notranslate"><span class="pre">Expression.str_symbolic()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.to_latex_variable"><code class="docutils literal notranslate"><span class="pre">Expression.to_latex_variable()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.to_latex_variable_all"><code class="docutils literal notranslate"><span class="pre">Expression.to_latex_variable_all()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.to_latex_variable_float"><code class="docutils literal notranslate"><span class="pre">Expression.to_latex_variable_float()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.to_latex_variable_str"><code class="docutils literal notranslate"><span class="pre">Expression.to_latex_variable_str()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.to_latex_variable_subst"><code class="docutils literal notranslate"><span class="pre">Expression.to_latex_variable_subst()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.to_latex_variable_symb"><code class="docutils literal notranslate"><span class="pre">Expression.to_latex_variable_symb()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.to_latex_variable_val_unit"><code class="docutils literal notranslate"><span class="pre">Expression.to_latex_variable_val_unit()</span></code></a></li>
+<li><a class="reference internal" href="#latexexpr_efficalc.Expression.to_variable"><code class="docutils literal notranslate"><span class="pre">Expression.to_variable()</span></code></a></li>
 <li><a class="reference internal" href="#latexexpr_efficalc.Expression.unit"><code class="docutils literal notranslate"><span class="pre">Expression.unit</span></code></a></li>
 </ul>
 </li>
