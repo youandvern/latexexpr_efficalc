@@ -1,7 +1,29 @@
 import math
+
 import pytest
-from latexexpr_efficalc import Operation, Variable, sum_elements, maximum, minimum, sqrt, sin, cos, tan, sinh, cosh, \
-    tanh, exp, log, ln, log10, r_brackets, brackets, s_brackets, c_brackets, a_brackets
+
+from latexexpr_efficalc import (
+    Variable,
+    a_brackets,
+    brackets,
+    c_brackets,
+    cos,
+    cosh,
+    exp,
+    ln,
+    log,
+    log10,
+    maximum,
+    minimum,
+    r_brackets,
+    s_brackets,
+    sin,
+    sinh,
+    sqrt,
+    sum_elements,
+    tan,
+    tanh,
+)
 
 VARIABLE_TO_OPERATION = Variable("one", 1)
 
@@ -63,19 +85,19 @@ def test_operation_multiply_left():
 def test_operation_power():
     a = Variable("a", 5) * VARIABLE_TO_OPERATION
     b = Variable("b", 3) * VARIABLE_TO_OPERATION
-    c = a ** b
+    c = a**b
     assert c.result() == 125
 
 
 def test_operation_power_right():
     a = Variable("a", 5) * VARIABLE_TO_OPERATION
-    c = 2 ** a
+    c = 2**a
     assert c.result() == 32
 
 
 def test_operation_power_left():
     a = Variable("a", 5) * VARIABLE_TO_OPERATION
-    c = a ** 2
+    c = a**2
     assert c.result() == 25
 
 
@@ -173,7 +195,7 @@ def test_operation_tanh():
 
 def test_operation_exp():
     a = Variable("a", 2) * VARIABLE_TO_OPERATION
-    assert exp(a).result() == pytest.approx(math.e ** 2, abs=0.001)
+    assert exp(a).result() == pytest.approx(math.e**2, abs=0.001)
 
 
 def test_operation_log():
@@ -197,7 +219,10 @@ def test_operation_r_brackets():
     b = Variable("b", 3, "in") * VARIABLE_TO_OPERATION
     c = b * r_brackets(a + b)
     assert c.result() == 15
-    assert c.str_substituted() == " 3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\cdot \\left(  2 \\ \\mathrm{} \\cdot  1 \\ \\mathrm{} +  3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\right)"
+    assert (
+        c.str_substituted()
+        == " 3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\cdot \\left(  2 \\ \\mathrm{} \\cdot  1 \\ \\mathrm{} +  3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\right)"
+    )
 
 
 def test_operation_brackets():
@@ -205,7 +230,10 @@ def test_operation_brackets():
     b = Variable("b", 3, "in") * VARIABLE_TO_OPERATION
     c = b * brackets(a + b)
     assert c.result() == 15
-    assert c.str_substituted() == " 3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\cdot \\left(  2 \\ \\mathrm{} \\cdot  1 \\ \\mathrm{} +  3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\right)"
+    assert (
+        c.str_substituted()
+        == " 3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\cdot \\left(  2 \\ \\mathrm{} \\cdot  1 \\ \\mathrm{} +  3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\right)"
+    )
 
 
 def test_operation_s_brackets():
@@ -213,7 +241,10 @@ def test_operation_s_brackets():
     b = Variable("b", 3, "in") * VARIABLE_TO_OPERATION
     c = b * s_brackets(a + b)
     assert c.result() == 15
-    assert c.str_substituted() == " 3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\cdot \\left[  2 \\ \\mathrm{} \\cdot  1 \\ \\mathrm{} +  3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\right]"
+    assert (
+        c.str_substituted()
+        == " 3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\cdot \\left[  2 \\ \\mathrm{} \\cdot  1 \\ \\mathrm{} +  3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\right]"
+    )
 
 
 def test_operation_c_brackets():
@@ -221,7 +252,10 @@ def test_operation_c_brackets():
     b = Variable("b", 3, "in") * VARIABLE_TO_OPERATION
     c = b * c_brackets(a + b)
     assert c.result() == 15
-    assert c.str_substituted() == " 3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\cdot \\left\\{  2 \\ \\mathrm{} \\cdot  1 \\ \\mathrm{} +  3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\right\\}"
+    assert (
+        c.str_substituted()
+        == " 3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\cdot \\left\\{  2 \\ \\mathrm{} \\cdot  1 \\ \\mathrm{} +  3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\right\\}"
+    )
 
 
 def test_operation_a_brackets():
@@ -229,4 +263,7 @@ def test_operation_a_brackets():
     b = Variable("b", 3, "in") * VARIABLE_TO_OPERATION
     c = b * a_brackets(a + b)
     assert c.result() == 15
-    assert c.str_substituted() == " 3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\cdot \\left\\langle  2 \\ \\mathrm{} \\cdot  1 \\ \\mathrm{} +  3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\right\\rangle"
+    assert (
+        c.str_substituted()
+        == " 3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\cdot \\left\\langle  2 \\ \\mathrm{} \\cdot  1 \\ \\mathrm{} +  3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\right\\rangle"
+    )
