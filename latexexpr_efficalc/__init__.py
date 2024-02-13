@@ -651,7 +651,7 @@ class Operation(object):
             if t == _DIV:
                 return r"\frac{ %s }{ %s }" % (v0, v1)
             if t == _DIV2:
-                return r"%s / %s" % (v0, v1)
+                return r"\left \lfloor \frac{ %s }{ %s } \right \rfloor" % (v0, v1)
             if t == _POW:
                 return r"{\left( %s \right)}^{ %s }" % (v0, v1)
             if t == _ROOT:
@@ -812,7 +812,7 @@ class Operation(object):
             if t == _DIV:
                 return v0 / v1
             if t == _DIV2:
-                return v0 / v1
+                return v0 // v1
             if t == _POW:
                 return math.pow(v0, v1)
             if t == _ROOT:
@@ -1055,9 +1055,9 @@ def div(*args):
 
 
 def div2(*args):
-    """Returns division Operation instance (in LaTeX marked by .../...
+    """Returns floor division Operation instance (in LaTeX marked by \\\\frac{...}{...} within a floor operation)
 
-    :param Variable(s)|Expression(s)|Operation(s) args: 2 objects for division ( arg0 / arg1)
+    :param Variable(s)|Expression(s)|Operation(s) args: 2 objects for floor division ( arg0 // arg1)
     """
     return Operation(_DIV2, *args)
 

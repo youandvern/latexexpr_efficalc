@@ -118,12 +118,11 @@ def test_variable_divide_left():
     assert c.result() == 2.5
 
 
-# TODO: Render floor div in LaTex and implement floor div operation
-# def test_variable_floor_div():
-#     a = Variable("a", 5)
-#     b = Variable("b", 2)
-#     c = a // b
-#     assert c.result() == 2
+def test_variable_floor_div():
+    a = Variable("a", 5)
+    b = Variable("b", 2)
+    c = a // b
+    assert c.result() == 2
 
 
 def test_variable_neg():
