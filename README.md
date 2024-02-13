@@ -9,12 +9,12 @@ Structural Mechanics, but the latest update was done in 2015.
 
 It was updated and posted by Jakub Kaderka in 2022 at the forked repo.
 
-This fork has then been updated for the application of displaying engineering 
+This fork has then been modified for the application of displaying engineering 
 calculations with the calculation package efficalc.
 
 ## Links
+* [Documentation](https://youandvern.github.io/latexexpr_efficalc)
 * [Forked Repo](https://github.com/kajusK/latexexpr)
-* [Documentation](https://kajusk.github.io/latexexpr/)
 * [Original webpage](https://mech.fsv.cvut.cz/~stransky/en/software/latexexpr/)
 * [Original documentation](https://mech.fsv.cvut.cz/~stransky/software/latexexpr/doc/index.html)
 

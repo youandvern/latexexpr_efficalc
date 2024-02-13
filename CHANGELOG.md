@@ -1,5 +1,16 @@
 # Changelog
 
+# Version 0.5
+Released 2024-02-12
+
+* Project forked and edited by Andrew Young
+* Update number display formatting
+* Implemented floor div for double backslash operator (//) as replacement for div2 operation
+* Various bug fixes
+* Added tests
+* Formatted with black
+* Updated project structure and published this forked version to PyPI
+
 # Version 0.4
 Released 2022-05-31
 

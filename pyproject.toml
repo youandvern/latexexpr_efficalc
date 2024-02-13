@@ -20,5 +20,5 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/youandvern/latexexpr_efficalc"
-Documentation = "https://youandvern.github.io/latexexpr_efficalc/"
+Documentation = "https://youandvern.github.io/latexexpr_efficalc"
 Issues = "https://github.com/youandvern/latexexpr_efficalc/issues"
