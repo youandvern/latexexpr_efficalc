@@ -1,5 +1,9 @@
 # Changelog
 
+# Version 0.5.3
+
+* Allow string vals in a Variable
+
 # Version 0.5
 Released 2024-02-12
 

@@ -8,6 +8,20 @@ def test_none_value():
     assert Variable("a", None).str_symbolic() == "{a}"
 
 
+def test_str_value():
+    assert Variable("a", "test").value is "test"
+    assert Variable("a", "test").is_symbolic() is False
+    assert Variable("a", "test").str_result() == " test"
+    assert Variable("a", "test").str_symbolic() == "{a}"
+
+
+def test_int_value():
+    assert Variable("a", 15).value == 15
+    assert Variable("a", 15).is_symbolic() is False
+    assert Variable("a", 15).str_result() == " 15"
+    assert Variable("a", 15).str_symbolic() == "{a}"
+
+
 def test_result():
     assert Variable("a", 0).result() == 0.0
     assert Variable("a", 3.9, "in").result() == 3.9

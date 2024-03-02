@@ -175,10 +175,10 @@ class Variable(object):
     This class also overloads +,-,*,/ (division, frac{...}{...} in LaTeX), // (divsion, .../... in LaTeX) and ** (power) operators. They can be used with Variable, Expression or Operation instances resulting into new Operation instance.
 
     :param str name: symbolic name of the variable
-    :param float|None value: value of the variable. If value==None, than the Variable is considered as symbolic
+    :param float|str|None value: value of the variable. If value==None, than the Variable is considered as symbolic
     :param str unit: physical unit of the variable
     :param str format: python string to be formatted by the numeric value with '%' operation (e.g. '%e', '%g', '%.4g', '%.3f' etc.). See `Python string formatting docs <http://docs.python.org/2/library/stdtypes.html#string-formatting-operations>`_ for more details.
-    :param str unitFormat: python string to be formatted with unit (default is '\mathrm{%s}' for non-italic units inside math mode). For no formatting use '%s'. See `Python string formatting docs <http://docs.python.org/2/library/stdtypes.html#string-formatting-operations>`_ for more details.
+    :param str unit_format: python string to be formatted with unit (default is '\mathrm{%s}' for non-italic units inside math mode). For no formatting use '%s'. See `Python string formatting docs <http://docs.python.org/2/library/stdtypes.html#string-formatting-operations>`_ for more details.
     :param int exponent: exponent for scientific representation
 
     .. code-block:: python
@@ -202,7 +202,7 @@ class Variable(object):
     #: string to be formatted by the numeric value (with '%' operation)
     format = "%.4g  "
     # : string to be formatted by physical unit string (with '%' operation)
-    unitFormat = r"\mathrm{%s}"
+    unit_format = r"\mathrm{%s}"
     #: exponent for scientific representation. If 0, then no scientific representation is performed
     exponent = 0
 
@@ -212,14 +212,14 @@ class Variable(object):
         value=None,
         unit="",
         format="%.4g",
-        unitFormat=r"\mathrm{%s}",
+        unit_format=r"\mathrm{%s}",
         exponent=0,
     ):
         self.name = name
-        self._value = None if value is None else float(value)
+        self._value = value
         self.unit = unit
         self.format = format
-        self.unitFormat = unitFormat
+        self.unit_format = unit_format
         self.exponent = exponent
         self.set_format()
 
@@ -320,7 +320,7 @@ class Variable(object):
                 >>> print v1.str_result_with_unit()
                 3.45 \ \mathrm{mm}
         """
-        return "%s \\ %s" % (self.str_result(), self.unitFormat % self.unit)
+        return "%s \\ %s" % (self.str_result(), self.unit_format % self.unit)
 
     def result(self):
         """Returns numeric result of the receiver (its value)
@@ -348,7 +348,7 @@ class Variable(object):
                 >>> print float(v1)
                 3.45
         """
-        return self.result()
+        return float(self.result())
 
     def __int__(self):
         """Returns numeric result of the receiver
@@ -444,7 +444,7 @@ class Variable(object):
         self.value = None if expr.is_symbolic() else float(expr)
         self.unit = expr.unit
         self.format = expr.format
-        self.unitFormat = expr.unitFormat
+        self.unit_format = expr.unit_format
         self.exponent = expr.exponent
         return self
 
@@ -888,7 +888,7 @@ class Operation(object):
                 >>> print float(o3)
                 2.14906332604
         """
-        return self.result()
+        return float(self.result())
 
     def __int__(self):
         """Returns numeric result of the receiver
@@ -1253,7 +1253,7 @@ class Expression(object):
     :param Operation|Variable|Expression operation: operation of the expression
     :param str unit: physical unit of the expression
     :param str format: python string to be formatted with '%' operation (e.g. '%e', '%g', '%.4g', '%.3f' etc.). See `Python string formatting docs <http://docs.python.org/2/library/stdtypes.html#string-formatting-operations>`_ for more details.
-    :param str unitFormat: python string to be formatted with unit (default is '\mathrm{%s}' for non-italic units inside math mode). For no formatting use '%s'. See `Python string formatting docs <http://docs.python.org/2/library/stdtypes.html#string-formatting-operations>`_ for more details.
+    :param str unit_format: python string to be formatted with unit (default is '\mathrm{%s}' for non-italic units inside math mode). For no formatting use '%s'. See `Python string formatting docs <http://docs.python.org/2/library/stdtypes.html#string-formatting-operations>`_ for more details.
     :param int exponent: exponent for scientific representation
 
     .. code-block:: python
@@ -1285,7 +1285,7 @@ class Expression(object):
     operation = None  #: underlying :class:`.Operation` instance
     unit = ""  #: see :py:attr:`Variable.unit`
     format = "%.4g"  #: see :py:attr:`Variable.format`
-    unitFormat = r"\mathrm{%s}"  # : see :py:attr:`Variable.unitFormat`
+    unit_format = r"\mathrm{%s}"  # : see :py:attr:`Variable.unit_format`
     exponent = 0  #: see :py:attr:`Variable.exponent`
 
     def __init__(
@@ -1294,7 +1294,7 @@ class Expression(object):
         operation,
         unit="",
         format="%.4g",
-        unitFormat=r"\mathrm{%s}",
+        unit_format=r"\mathrm{%s}",
         exponent=0,
     ):
         self.name = name
@@ -1305,7 +1305,7 @@ class Expression(object):
         )
         self.unit = unit
         self.format = format
-        self.unitFormat = unitFormat
+        self.unit_format = unit_format
         self.exponent = exponent
         self.set_format()
 
@@ -1408,7 +1408,7 @@ class Expression(object):
                 >>> print e2.str_result_with_unit()
                 2.14906 \ \mathrm{mm}
         """
-        return "%s \\ %s" % (self.str_result(), self.unitFormat % self.unit)
+        return "%s \\ %s" % (self.str_result(), self.unit_format % self.unit)
 
     def result(self):
         """Returns numeric result of the receiver
@@ -1440,7 +1440,7 @@ class Expression(object):
                 >>> print float(e2)
                 2.14906332604
         """
-        return self.result()
+        return float(self.result())
 
     def __int__(self):
         """Returns numeric result of the receiver
