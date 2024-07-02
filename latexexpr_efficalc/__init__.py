@@ -631,7 +631,13 @@ class Operation(object):
         a = self.args
         t = self.type
         if t in _supportedOperationsN:
-            v = (getattr(arg, what)() for arg in a)
+            v = []
+            for arg in a:
+                _s = getattr(arg, what)()
+                if self.type == _MUL:
+                    if isinstance(arg, Operation) and arg.type in [_ADD, _SUB]:
+                        _s = fr"\left({_s}\right)"
+                v.append(_s)
             if t == _ADD:
                 return r" + ".join(v)
             if t == _MUL:
