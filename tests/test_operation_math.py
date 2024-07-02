@@ -266,3 +266,19 @@ def test_operation_a_brackets():
         c.str_substituted()
         == " 3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\cdot \\left\\langle  2 \\ \\mathrm{} \\cdot  1 \\ \\mathrm{} +  3 \\ \\mathrm{in} \\cdot  1 \\ \\mathrm{} \\right\\rangle"
     )
+
+
+def test_operation_parens_add_sub():
+    a = Variable("a", 2, "foo")
+    b = Variable("b", 3, "bar")
+    c = Variable("c", 5, "baz")
+
+    d = 1 / ((a + b) * c)
+
+    assert d.str_symbolic() == r"\frac{ {1} }{ \left({a} + {b}\right) \cdot {c} }"
+
+    assert d.str_substituted() == (
+        r"\frac"
+        r"{  1 \ \mathrm{} }"
+        r"{ \left( 2 \ \mathrm{foo} +  3 \ \mathrm{bar}\right) \cdot  5 \ \mathrm{baz} }"
+    )
